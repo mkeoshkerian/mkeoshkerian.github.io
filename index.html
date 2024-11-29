@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singularity | Mike Keoshkerian</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        :root {
+            --bg-primary: #1a1f2e;
+            --bg-secondary: #1e2534;
+            --accent-color: #7dd3fc;
+            --text-primary: #e6e6e6;
+            --text-secondary: #94a3b8;
+            --font-mono: 'Courier New', Courier, monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-mono);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            padding: 4rem 0 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+        }
+
+        .site-title {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .site-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .timestamp {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            opacity: 0.8;
+        }
+
+        /* Latest Posts */
+        .section-title {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin: 3rem 0 2rem;
+            letter-spacing: 1px;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .post-card {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .post-title {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-date {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(125, 211, 252, 0.1);
+            color: var(--accent-color);
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .read-more:hover {
+            background: rgba(125, 211, 252, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .footer-section p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="site-title">> Singularity</h1>
+            <p class="site-subtitle">Creativity, curiosity and code . . .</p>
+            <p class="timestamp">Welcome 66.207.221.58 : 12:29 PM November 29, 2024</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 class="section-title">LATEST POSTS</h2>
+        <div class="posts-grid">
+            <article class="post-card">
+                <h3 class="post-title">Building Neural Networks From Scratch</h3>
+                <p class="post-date">Nov 28, 2024</p>
+                <p class="post-excerpt">Exploring the fundamentals of neural networks by implementing one from the ground up using Python. Understanding backpropagation and gradient descent...</p>
+                <div class="post-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">ML</span>
+                </div>
+                <a href="#" class="read-more">Read more</a>
+            </article>
+
+            <article class="post-card">
+                <h3 class="post-title">The Art of System Design</h3>
+                <p class="post-date">Nov 25, 2024</p>
+                <p class="post-excerpt">Breaking down complex systems into manageable components. A practical guide to designing scalable and maintainable software architecture...</p>
+                <div class="post-tags">
+                    <span class="tag">Architecture</span>
+                    <span class="tag">Design</span>
+                </div>
+                <a href="#" class="read-more">Read more</a>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <p>A space for exploring technology, sharing ideas, and documenting the journey through code.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Archive</a></li>
+                        <li><a href="#">Projects</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
