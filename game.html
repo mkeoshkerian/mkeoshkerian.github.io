@@ -20,6 +20,16 @@
             --bg-secondary: #1a1f2e;
             --accent-color: #7dd3fc;
             --text-primary: #e6e6e6;
+            --netflix: #e11d48;
+            --roku: #7c3aed;
+            --cerebras: #8b5cf6;
+            --groq: #6366f1;
+            --rippling: #06b6d4;
+            --astera: #10b981;
+            --recursion: #ec4899;
+            --databricks: #3b82f6;
+            --ripple: #14b8a6;
+            --sledgehammer: #f59e0b;
         }
 
         body {
@@ -55,8 +65,8 @@
         .card {
             width: 140px;
             height: 180px;
-            position: relative;
             perspective: 1000px;
+            position: relative;
         }
 
         .card-inner {
@@ -86,12 +96,24 @@
 
         .card-front {
             background: var(--bg-secondary);
+            border-color: var(--accent-color);
+            transform: rotateY(180deg);
         }
 
         .card-back {
             background: var(--accent-color);
-            transform: rotateY(180deg);
         }
+
+        .netflix { background-color: var(--netflix); }
+        .roku { background-color: var(--roku); }
+        .cerebras { background-color: var(--cerebras); }
+        .groq { background-color: var(--groq); }
+        .rippling { background-color: var(--rippling); }
+        .astera { background-color: var(--astera); }
+        .recursion { background-color: var(--recursion); }
+        .databricks { background-color: var(--databricks); }
+        .ripple { background-color: var(--ripple); }
+        .sledgehammer { background-color: var(--sledgehammer); }
 
         .win-screen {
             display: none;
@@ -151,27 +173,42 @@
     </div>
 
     <script>
-        const companies = ['Netflix', 'Roku', 'Groq', 'Cerebras', 'Ripple', 'Unity', 'Recursion', 'Databricks', 'Flexport', 'Astera Labs'];
+        const companies = [
+            { name: 'Netflix', class: 'netflix' },
+            { name: 'Roku', class: 'roku' },
+            { name: 'Cerebras', class: 'cerebras' },
+            { name: 'Groq', class: 'groq' },
+            { name: 'Rippling', class: 'rippling' },
+            { name: 'Astera Labs', class: 'astera' },
+            { name: 'Recursion', class: 'recursion' },
+            { name: 'Databricks', class: 'databricks' },
+            { name: 'Ripple', class: 'ripple' },
+            { name: 'Sledgehammer', class: 'sledgehammer' }
+        ];
+
         let cards = [];
         let flippedCards = [];
         let moves = 0;
         let matches = 0;
 
-        function shuffle(array) {
-            return array.sort(() => Math.random() - 0.5);
-        }
+        function initializeGame() {
+            const gameGrid = document.getElementById('gameGrid');
+            gameGrid.innerHTML = '';
+            const shuffledCards = [...companies, ...companies].sort(() => Math.random() - 0.5);
 
-        function createCard(company) {
-            const card = document.createElement('div');
-            card.classList.add('card');
-            card.innerHTML = `
-                <div class="card-inner">
-                    <div class="card-front">${company}</div>
-                    <div class="card-back">?</div>
-                </div>
-            `;
-            card.addEventListener('click', () => flipCard(card, company));
-            return card;
+            shuffledCards.forEach((company) => {
+                const card = document.createElement('div');
+                card.className = `card ${company.class}`;
+                card.innerHTML = `
+                    <div class="card-inner">
+                        <div class="card-front"></div>
+                        <div class="card-back">${company.name}</div>
+                    </div>
+                `;
+                card.addEventListener('click', () => flipCard(card, company));
+                gameGrid.appendChild(card);
+                cards.push(card);
+            });
         }
 
         function flipCard(card, company) {
@@ -181,25 +218,22 @@
             flippedCards.push({ card, company });
 
             if (flippedCards.length === 2) {
-                checkMatch();
-                moves++;
-                document.getElementById('moves').textContent = moves;
+                setTimeout(checkMatch, 1000);
             }
         }
 
         function checkMatch() {
             const [first, second] = flippedCards;
-            if (first.company === second.company) {
+            if (first.company.name === second.company.name) {
                 matches++;
                 document.getElementById('matches').textContent = matches;
                 if (matches === companies.length) showWinScreen();
             } else {
-                setTimeout(() => {
-                    first.card.classList.remove('flipped');
-                    second.card.classList.remove('flipped');
-                }, 1000);
+                first.card.classList.remove('flipped');
+                second.card.classList.remove('flipped');
             }
             flippedCards = [];
+            document.getElementById('moves').textContent = ++moves;
         }
 
         function showWinScreen() {
@@ -210,20 +244,10 @@
         function resetGame() {
             moves = 0;
             matches = 0;
-            document.getElementById('moves').textContent = '0';
-            document.getElementById('matches').textContent = '0';
-            document.getElementById('winScreen').style.display = 'none';
+            document.getElementById('moves').textContent = moves;
+            document.getElementById('matches').textContent = matches;
+            flippedCards = [];
             initializeGame();
-        }
-
-        function initializeGame() {
-            const gameGrid = document.getElementById('gameGrid');
-            gameGrid.innerHTML = '';
-            const shuffledCompanies = shuffle([...companies, ...companies]);
-            shuffledCompanies.forEach(company => {
-                const card = createCard(company);
-                gameGrid.appendChild(card);
-            });
         }
 
         initializeGame();
