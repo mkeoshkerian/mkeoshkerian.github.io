@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Singularity | Mike Keoshkerian</title>
+    <title>My Space</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
         :root {
@@ -78,25 +78,14 @@
         /* Main Content */
         main {
             display: flex;
+            flex-wrap: wrap;
             gap: 2rem;
+            justify-content: space-between;
             padding: 4rem 0;
         }
 
-        .about-section {
-            flex: 3;
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .about-section h2 {
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-
-        .highlight-section {
-            flex: 1;
+        .section {
+            flex: 1 1 calc(33.333% - 1rem);
             background: var(--bg-secondary);
             border-radius: 8px;
             padding: 2rem;
@@ -104,13 +93,17 @@
             text-align: center;
         }
 
-        .highlight-section h2 {
+        .section h2 {
             color: var(--accent-color);
             margin-bottom: 1rem;
         }
 
-        .highlight-section p {
+        .section p {
             color: var(--text-secondary);
+        }
+
+        .full-width {
+            flex: 1 1 100%;
         }
 
         /* Footer */
@@ -178,14 +171,17 @@
             .tech-clock {
                 font-size: 0.7rem;
             }
+            .section {
+                flex: 1 1 100%;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1 class="site-title">> Singularity</h1>
-            <p class="site-subtitle">Creativity, curiosity and code . . .</p>
+            <h1 class="site-title">> My Space</h1>
+            <p class="site-subtitle">Figuring this out...</p>
             <p class="tech-clock">
                 > TOR: 2024.11.29_12:29_EST | SFO: 2024.11.29_09:29_PST | YVN: 2024.11.29_21:29_AMT<span class="cursor"></span>
             </p>
@@ -193,15 +189,20 @@
     </header>
 
     <main class="container">
-        <div class="about-section">
+        <div class="section">
             <h2>> About</h2>
-            <p>Michael Keoshkerian is a challenge-seeker passionate about forging connections, supporting community success, and enabling builders to thrive. As a proud graduate of the University of Toronto and OCAD University, he combines a love of classical history and design with expertise in foreign direct investment, venture capital, and strategic relationships. With a career spanning senior roles in government, academia, and investment attraction, Michael has directly contributed to over $600 million in investments and 2,500 jobs in Toronto. He strives to uplift others and spotlight those who deserve recognition.</p>
+            <p>Welcome to my corner of the internet. I’m Michael, a professional connector, challenge-seeker, and puzzle solver. I’m passionate about building meaningful relationships and occasionally figuring things out as I go. Stick around for updates, musings, and more.</p>
         </div>
 
-        <div class="highlight-section">
+        <div class="section">
             <h2>Tech Match Game</h2>
-            <p>Explore the companies Michael has helped expand into the Toronto Region, including Netflix, Ripple, Roku, and more. Test your memory and see how well you know these innovative players in the Tech Match Game!</p>
+            <p>Explore the companies I’ve helped expand into the Toronto Region, including Netflix, Ripple, Roku, and more. Test your memory in the Tech Match Game!</p>
             <a href="game.html" style="color: var(--accent-color); text-decoration: underline;">Play the Game</a>
+        </div>
+
+        <div class="section full-width">
+            <h2>> Posts</h2>
+            <p>Coming soon...</p>
         </div>
     </main>
 
@@ -210,7 +211,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>About</h3>
-                    <p>Michael is passionate about connecting ideas, people, and opportunities to create lasting impact in the Toronto Region and beyond.</p>
+                    <p>It’s just me here, tinkering with ideas and trying not to break the internet.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
