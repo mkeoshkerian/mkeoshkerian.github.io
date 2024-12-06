@@ -1,258 +1,324 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Singularity | Mike Keoshkerian</title>
+    <title>SF-Toronto Tech Match</title>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YCFL3R1VNF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YCFL3R1VNF');
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
         :root {
-            --bg-primary: #1a1f2e;
-            --bg-secondary: #1e2534;
+            --bg-primary: #0a0f1f;
+            --bg-secondary: #1a1f2e;
             --accent-color: #7dd3fc;
             --text-primary: #e6e6e6;
-            --text-secondary: #94a3b8;
-            --font-mono: 'Courier New', Courier, monospace;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --netflix: #e11d48;
+            --roku: #7c3aed;
+            --cerebras: #8b5cf6;
+            --groq: #6366f1;
+            --rippling: #06b6d4;
+            --astera: #10b981;
+            --recursion: #ec4899;
+            --databricks: #3b82f6;
+            --ripple: #14b8a6;
+            --sledgehammer: #f59e0b;
         }
 
         body {
-            font-family: var(--font-mono);
-            background-color: var(--bg-primary);
+            margin: 0;
+            padding: 20px;
+            background: var(--bg-primary);
+            font-family: 'Courier New', monospace;
             color: var(--text-primary);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Header */
-        header {
-            padding: 4rem 0 2rem;
-            text-align: center;
-            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-        }
-
-        .site-title {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .site-subtitle {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            letter-spacing: 2px;
-        }
-
-        .tech-clock {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: 2rem;
-            opacity: 0.8;
-        }
-
-        .cursor {
-            display: inline-block;
-            background: var(--accent-color);
-            width: 8px;
-            height: 15px;
-            animation: blink 1s infinite;
-            vertical-align: middle;
-            margin-left: 4px;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0 }
-        }
-
-        /* Main Content */
-        main {
-            padding: 4rem 0;
-        }
-
-        .about-section {
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            padding: 2rem;
-            margin-top: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .about-section h2 {
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 4rem;
-            padding: 2rem 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .footer-section h3 {
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-
-        .footer-section p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-color);
-        }
-
-        .social-links {
             display: flex;
-            gap: 1rem;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .social-links a {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            transition: color 0.3s;
-            text-decoration: none;
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 800px;
         }
 
-        .social-links a:hover {
-            color: var(--accent-color);
+        .stats {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+            background: var(--bg-secondary);
+            padding: 15px 30px;
+            border-radius: 8px;
         }
 
-        @media (max-width: 768px) {
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            .tech-clock {
-                font-size: 0.7rem;
-            }
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            max-width: 1000px;
+            padding: 20px;
+        }
+
+        .card {
+            width: 140px;
+            height: 180px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-front {
+            background: var(--bg-secondary);
+            border: 3px solid var(--accent-color);
+            transform: rotateY(180deg);
+            gap: 15px;
+        }
+
+        .company-icon {
+            font-size: 1.8em;
+            margin-top: 5px;
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, var(--bg-secondary), #2a3a5a);
+            border: 3px solid var(--accent-color);
+            font-size: 2em;
+        }
+
+        .matched {
+            animation: matchPulse 0.5s ease-in-out;
+        }
+
+        @keyframes matchPulse {
+            0% { transform: scale(1) rotateY(180deg); }
+            50% { transform: scale(1.1) rotateY(180deg); }
+            100% { transform: scale(1) rotateY(180deg); }
+        }
+
+        .netflix { border-color: var(--netflix); color: var(--netflix); }
+        .roku { border-color: var(--roku); color: var(--roku); }
+        .cerebras { border-color: var(--cerebras); color: var(--cerebras); }
+        .groq { border-color: var(--groq); color: var(--groq); }
+        .rippling { border-color: var(--rippling); color: var(--rippling); }
+        .astera { border-color: var(--astera); color: var(--astera); }
+        .recursion { border-color: var(--recursion); color: var(--recursion); }
+        .databricks { border-color: var(--databricks); color: var(--databricks); }
+        .ripple { border-color: var(--ripple); color: var(--ripple); }
+        .sledgehammer { border-color: var(--sledgehammer); color: var(--sledgehammer); }
+
+        .win-screen {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            display: none;
+            z-index: 1000;
+            border: 3px solid var(--accent-color);
+        }
+
+        .button {
+            background: var(--accent-color);
+            color: var(--bg-primary);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1 class="site-title">> Singularity</h1>
-            <p class="site-subtitle">Creativity, curiosity and code . . .</p>
-            <p class="tech-clock">
-                > TOR: 2024.11.29_12:29_EST | SFO: 2024.11.29_09:29_PST | YVN: 2024.11.29_21:29_AMT<span class="cursor"></span>
-            </p>
-        </div>
-    </header>
+    <div class="header">
+        <h1>Tech Match</h1>
+        <p>Match the company pairs that Michael has helped expand to Toronto!</p>
+    </div>
 
-    <main class="container">
-        <div class="about-section">
-            <h2>> About</h2>
-            <p>[About section coming soon...]</p>
-        </div>
-    </main>
+    <div class="stats">
+        <div>Moves: <span id="moves">0</span></div>
+        <div>Matches: <span id="matches">0</span>/10</div>
+    </div>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>About</h3>
-                    <p>A space for exploring technology, sharing ideas, and documenting the journey through code.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Connect</h3>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/michael-keoshkerian/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="mailto:michael.keoshkerian@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <div class="game-grid" id="gameGrid"></div>
+
+    <div class="win-screen" id="winScreen">
+        <h2>Congratulations!</h2>
+        <p>You've matched all companies!</p>
+        <p>Total moves: <span id="finalMoves">0</span></p>
+        <button class="button" onclick="resetGame()">Play Again</button>
+    </div>
 
     <script>
-        function updateClock() {
-            const now = new Date();
-            
-            // Toronto (EST)
-            const tor = now.toLocaleString('en-US', { 
-                timeZone: 'America/Toronto',
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-                hour12: false
-            });
+        const companies = [
+            {name: 'Netflix', class: 'netflix', icon: 'fas fa-play'},
+            {name: 'Roku', class: 'roku', icon: 'fas fa-tv'},
+            {name: 'Cerebras', class: 'cerebras', icon: 'fas fa-microchip'},
+            {name: 'Groq', class: 'groq', icon: 'fas fa-brain'},
+            {name: 'Rippling', class: 'rippling', icon: 'fas fa-users'},
+            {name: 'Astera Labs', class: 'astera', icon: 'fas fa-network-wired'},
+            {name: 'Recursion', class: 'recursion', icon: 'fas fa-dna'},
+            {name: 'Databricks', class: 'databricks', icon: 'fas fa-database'},
+            {name: 'Ripple', class: 'ripple', icon: 'fas fa-money-bill-wave'},
+            {name: 'Sledgehammer', class: 'sledgehammer', icon: 'fas fa-gamepad'}
+        ];
 
-            // San Francisco (PST)
-            const sfo = now.toLocaleString('en-US', {
-                timeZone: 'America/Los_Angeles',
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-                hour12: false
-            });
+        let cards = [];
+        let flippedCards = [];
+        let moves = 0;
+        let matches = 0;
+        let canFlip = true;
 
-            // Yerevan (AMT)
-            const yvn = now.toLocaleString('en-US', {
-                timeZone: 'Asia/Yerevan',
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-                hour12: false
-            });
-
-            // Format the times
-            const formatTime = (timeStr) => {
-                const [date, time] = timeStr.split(', ');
-                const [month, day, year] = date.split('/');
-                return `${year}.${month}.${day}_${time}`;
-            };
-
-            const clockDisplay = `> TOR: ${formatTime(tor)}_EST | SFO: ${formatTime(sfo)}_PST | YVN: ${formatTime(yvn)}_AMT`;
-            document.querySelector('.tech-clock').innerHTML = clockDisplay + '<span class="cursor"></span>';
+        function createCard(company) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="card-front ${company.class}">
+                    <span>${company.name}</span>
+                    <i class="company-icon ${company.icon}"></i>
+                </div>
+                <div class="card-back">?</div>
+            `;
+            return card;
         }
 
-        // Update clock immediately and then every second
-        updateClock();
-        setInterval(updateClock, 1000);
+        function initializeGame() {
+            const gameGrid = document.getElementById('gameGrid');
+            gameGrid.innerHTML = '';
+            
+            const cardPairs = [...companies, ...companies]
+                .sort(() => Math.random() - 0.5);
+            
+            cardPairs.forEach((company, index) => {
+                const card = createCard(company);
+                cards[index] = card;
+                
+                card.addEventListener('click', () => flipCard(index));
+                gameGrid.appendChild(card);
+            });
+
+            // Track game start
+            gtag('event', 'game_start', {
+                'event_category': 'Game'
+            });
+        }
+
+        function flipCard(index) {
+            const card = cards[index];
+            
+            if (!canFlip || card.classList.contains('flipped') || 
+                card.classList.contains('matched') || 
+                flippedCards.includes(index)) {
+                return;
+            }
+
+            card.classList.add('flipped');
+            flippedCards.push(index);
+
+            if (flippedCards.length === 2) {
+                moves++;
+                document.getElementById('moves').textContent = moves;
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            canFlip = false;
+            const [first, second] = flippedCards.map(index => cards[index]);
+            const firstCompany = first.querySelector('.card-front').textContent;
+            const secondCompany = second.querySelector('.card-front').textContent;
+
+            if (firstCompany === secondCompany) {
+                matches++;
+                document.getElementById('matches').textContent = matches;
+                
+                first.classList.add('matched');
+                second.classList.add('matched');
+                
+                // Track successful match
+                gtag('event', 'match_found', {
+                    'event_category': 'Game',
+                    'event_label': firstCompany
+                });
+                
+                if (matches === companies.length) {
+                    showWinScreen();
+                    // Track game completion
+                    gtag('event', 'game_complete', {
+                        'event_category': 'Game',
+                        'event_label': `Moves: ${moves}`
+                    });
+                }
+            } else {
+                setTimeout(() => {
+                    first.classList.remove('flipped');
+                    second.classList.remove('flipped');
+                }, 1000);
+                // Track failed match
+                gtag('event', 'match_failed', {
+                    'event_category': 'Game'
+                });
+            }
+
+            setTimeout(() => {
+                flippedCards = [];
+                canFlip = true;
+            }, 1000);
+        }
+
+        function showWinScreen() {
+            document.getElementById('finalMoves').textContent = moves;
+            document.getElementById('winScreen').style.display = 'block';
+        }
+
+        function resetGame() {
+            moves = 0;
+            matches = 0;
+            document.getElementById('moves').textContent = '0';
+            document.getElementById('matches').textContent = '0';
+            document.getElementById('winScreen').style.display = 'none';
+            initializeGame();
+        }
+
+        initializeGame();
     </script>
 </body>
 </html>
