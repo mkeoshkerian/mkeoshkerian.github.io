@@ -97,17 +97,17 @@
         .card-front {
             background: var(--bg-secondary);
             transform: rotateY(180deg);
-            color: var(--text-primary);
             flex-direction: column;
+            color: white;
         }
 
         .card-back {
             background: var(--accent-color);
         }
 
-        .matched {
-            background: var(--bg-secondary);
-            opacity: 0.7;
+        .matched .card-inner {
+            transform: scale(1.1);
+            opacity: 0.6;
         }
 
         @media (max-width: 768px) {
@@ -161,8 +161,8 @@
             card.classList.add('card');
             card.innerHTML = `
                 <div class="card-inner">
-                    <div class="card-front">
-                        <i class="${company.icon}" style="font-size: 2em; color: ${company.color};"></i>
+                    <div class="card-front" style="background: ${company.color};">
+                        <i class="${company.icon}" style="font-size: 2em; color: white;"></i>
                         <p>${company.name}</p>
                     </div>
                     <div class="card-back"></div>
@@ -179,7 +179,7 @@
             flippedCards.push({ card, company });
 
             if (flippedCards.length === 2) {
-                checkMatch();
+                setTimeout(checkMatch, 1000);
             }
         }
 
@@ -192,10 +192,8 @@
                 matches++;
                 document.getElementById('matches').textContent = matches;
             } else {
-                setTimeout(() => {
-                    first.card.classList.remove('flipped');
-                    second.card.classList.remove('flipped');
-                }, 1000);
+                first.card.classList.remove('flipped');
+                second.card.classList.remove('flipped');
             }
 
             flippedCards = [];
