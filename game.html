@@ -1,19 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Match Game</title>
+    <title>Tech Match</title>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-YCFL3R1VNF"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+        function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-YCFL3R1VNF');
+
+        // Track game events
+        function trackGameEvent(action, category = 'Game', label = '') {
+            gtag('event', action, {
+                'event_category': category,
+                'event_label': label
+            });
+        }
     </script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
         :root {
             --bg-primary: #0a0f1f;
@@ -45,14 +54,22 @@
 
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 800px;
         }
 
         .stats {
             display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
+            gap: 30px;
+            margin-bottom: 30px;
             font-size: 1.2em;
+            background: var(--bg-secondary);
+            padding: 15px 30px;
+            border-radius: 8px;
         }
 
         .game-grid {
@@ -60,75 +77,108 @@
             grid-template-columns: repeat(5, 1fr);
             gap: 15px;
             max-width: 1000px;
+            padding: 20px;
         }
 
         .card {
             width: 140px;
             height: 180px;
             position: relative;
-            perspective: 1000px;
-        }
-
-        .card-inner {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            transform-style: preserve-3d;
+            cursor: pointer;
             transition: transform 0.6s;
+            transform-style: preserve-3d;
         }
 
-        .card.flipped .card-inner {
+        .card.flipped {
             transform: rotateY(180deg);
         }
 
         .card-front, .card-back {
+            position: absolute;
             width: 100%;
             height: 100%;
-            position: absolute;
             backface-visibility: hidden;
-            border-radius: 8px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 1.2em;
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 1.1em;
             font-weight: bold;
             text-align: center;
-            border: 2px solid var(--accent-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .card-front {
             background: var(--bg-secondary);
+            border: 3px solid var(--accent-color);
             transform: rotateY(180deg);
-            color: white;
+            gap: 15px;
+        }
+
+        .company-icon {
+            font-size: 1.8em;
+            margin-top: 5px;
         }
 
         .card-back {
-            background: var(--accent-color);
+            background: linear-gradient(135deg, var(--bg-secondary), #2a3a5a);
+            border: 3px solid var(--accent-color);
+            font-size: 2em;
         }
 
         .matched {
-            opacity: 0.6;
-            pointer-events: none;
+            animation: matchPulse 0.5s ease-in-out;
         }
 
-        @media (max-width: 768px) {
-            .game-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-            }
+        @keyframes matchPulse {
+            0% { transform: scale(1) rotateY(180deg); }
+            50% { transform: scale(1.1) rotateY(180deg); }
+            100% { transform: scale(1) rotateY(180deg); }
+        }
 
-            .card {
-                width: 100px;
-                height: 130px;
-            }
+        .netflix { border-color: var(--netflix); color: var(--netflix); }
+        .roku { border-color: var(--roku); color: var(--roku); }
+        .cerebras { border-color: var(--cerebras); color: var(--cerebras); }
+        .groq { border-color: var(--groq); color: var(--groq); }
+        .rippling { border-color: var(--rippling); color: var(--rippling); }
+        .astera { border-color: var(--astera); color: var(--astera); }
+        .recursion { border-color: var(--recursion); color: var(--recursion); }
+        .databricks { border-color: var(--databricks); color: var(--databricks); }
+        .ripple { border-color: var(--ripple); color: var(--ripple); }
+        .sledgehammer { border-color: var(--sledgehammer); color: var(--sledgehammer); }
+
+        .win-screen {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            display: none;
+            z-index: 1000;
+            border: 3px solid var(--accent-color);
+        }
+
+        .button {
+            background: var(--accent-color);
+            color: var(--bg-primary);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>Tech Match Game</h1>
-        <p>Match the companies that have expanded to Toronto!</p>
+        <h1>Tech Match</h1>
+        <p>Match the company pairs that Michael has helped expand to Toronto!</p>
     </div>
 
     <div class="stats">
@@ -138,83 +188,129 @@
 
     <div class="game-grid" id="gameGrid"></div>
 
+    <div class="win-screen" id="winScreen">
+        <h2>Congratulations!</h2>
+        <p>You've matched all companies!</p>
+        <p>Total moves: <span id="finalMoves">0</span></p>
+        <button class="button" onclick="resetGame()">Play Again</button>
+    </div>
+
     <script>
         const companies = [
-            { name: 'Netflix', color: 'var(--netflix)', icon: 'fas fa-play' },
-            { name: 'Roku', color: 'var(--roku)', icon: 'fas fa-tv' },
-            { name: 'Cerebras', color: 'var(--cerebras)', icon: 'fas fa-microchip' },
-            { name: 'Groq', color: 'var(--groq)', icon: 'fas fa-brain' },
-            { name: 'Rippling', color: 'var(--rippling)', icon: 'fas fa-users' },
-            { name: 'Astera Labs', color: 'var(--astera)', icon: 'fas fa-network-wired' },
-            { name: 'Recursion', color: 'var(--recursion)', icon: 'fas fa-dna' },
-            { name: 'Databricks', color: 'var(--databricks)', icon: 'fas fa-database' },
-            { name: 'Ripple', color: 'var(--ripple)', icon: 'fas fa-money-bill-wave' },
-            { name: 'Sledgehammer', color: 'var(--sledgehammer)', icon: 'fas fa-hammer' }
+            {name: 'Netflix', class: 'netflix', icon: 'fas fa-play'},
+            {name: 'Roku', class: 'roku', icon: 'fas fa-tv'},
+            {name: 'Cerebras', class: 'cerebras', icon: 'fas fa-microchip'},
+            {name: 'Groq', class: 'groq', icon: 'fas fa-brain'},
+            {name: 'Rippling', class: 'rippling', icon: 'fas fa-users'},
+            {name: 'Astera Labs', class: 'astera', icon: 'fas fa-network-wired'},
+            {name: 'Recursion', class: 'recursion', icon: 'fas fa-dna'},
+            {name: 'Databricks', class: 'databricks', icon: 'fas fa-database'},
+            {name: 'Ripple', class: 'ripple', icon: 'fas fa-money-bill-wave'},
+            {name: 'Sledgehammer', class: 'sledgehammer', icon: 'fas fa-gamepad'}
         ];
 
+        let cards = [];
+        let flippedCards = [];
         let moves = 0;
         let matches = 0;
-        let flippedCards = [];
-
-        const gameGrid = document.getElementById('gameGrid');
+        let canFlip = true;
 
         function createCard(company) {
             const card = document.createElement('div');
-            card.classList.add('card');
+            card.className = 'card';
             card.innerHTML = `
-                <div class="card-inner">
-                    <div class="card-front" style="background: ${company.color};">
-                        <i class="${company.icon}" style="font-size: 2em; color: white;"></i>
-                        <p>${company.name}</p>
-                    </div>
-                    <div class="card-back"></div>
+                <div class="card-front ${company.class}">
+                    <span>${company.name}</span>
+                    <i class="company-icon ${company.icon}"></i>
                 </div>
+                <div class="card-back">?</div>
             `;
-            card.addEventListener('click', () => flipCard(card, company));
             return card;
         }
 
-        function flipCard(card, company) {
-            if (flippedCards.length === 2 || card.classList.contains('flipped')) return;
+        function initializeGame() {
+            const gameGrid = document.getElementById('gameGrid');
+            gameGrid.innerHTML = '';
+            
+            const cardPairs = [...companies, ...companies]
+                .sort(() => Math.random() - 0.5);
+            
+            cardPairs.forEach((company, index) => {
+                const card = createCard(company);
+                cards[index] = card;
+                
+                card.addEventListener('click', () => flipCard(index));
+                gameGrid.appendChild(card);
+            });
+        }
+
+        function flipCard(index) {
+            const card = cards[index];
+            
+            if (!canFlip || card.classList.contains('flipped') || 
+                card.classList.contains('matched') || 
+                flippedCards.includes(index)) {
+                return;
+            }
 
             card.classList.add('flipped');
-            flippedCards.push({ card, company });
+            flippedCards.push(index);
 
             if (flippedCards.length === 2) {
-                setTimeout(checkMatch, 1000);
+                moves++;
+                document.getElementById('moves').textContent = moves;
+                checkMatch();
             }
         }
 
         function checkMatch() {
-            const [first, second] = flippedCards;
+            canFlip = false;
+            const [first, second] = flippedCards.map(index => cards[index]);
+            const firstCompany = first.querySelector('.card-front').textContent;
+            const secondCompany = second.querySelector('.card-front').textContent;
 
-            if (first.company.name === second.company.name) {
-                first.card.classList.add('matched');
-                second.card.classList.add('matched');
+            if (firstCompany === secondCompany) {
                 matches++;
                 document.getElementById('matches').textContent = matches;
+                
+                first.classList.add('matched');
+                second.classList.add('matched');
+                
+                // Track successful match
+                trackGameEvent('match_found', 'Game', firstCompany);
+                
+                if (matches === companies.length) {
+                    showWinScreen();
+                    // Track game completion
+                    trackGameEvent('game_complete', 'Game', `Moves: ${moves}`);
+                }
             } else {
-                first.card.classList.remove('flipped');
-                second.card.classList.remove('flipped');
+                setTimeout(() => {
+                    first.classList.remove('flipped');
+                    second.classList.remove('flipped');
+                }, 1000);
+                // Track failed match attempt
+                trackGameEvent('match_failed', 'Game');
             }
 
-            flippedCards = [];
-            moves++;
-            document.getElementById('moves').textContent = moves;
+            setTimeout(() => {
+                flippedCards = [];
+                canFlip = true;
+            }, 1000);
         }
 
-        function initializeGame() {
-            gameGrid.innerHTML = '';
+        function showWinScreen() {
+            document.getElementById('finalMoves').textContent = moves;
+            document.getElementById('winScreen').style.display = 'block';
+        }
+
+        function resetGame() {
             moves = 0;
             matches = 0;
-            document.getElementById('moves').textContent = moves;
-            document.getElementById('matches').textContent = matches;
-
-            const cards = [...companies, ...companies].sort(() => Math.random() - 0.5);
-            cards.forEach(company => {
-                const card = createCard(company);
-                gameGrid.appendChild(card);
-            });
+            document.getElementById('moves').textContent = '0';
+            document.getElementById('matches').textContent = '0';
+            document.getElementById('winScreen').style.display = 'none';
+            initializeGame();
         }
 
         initializeGame();
