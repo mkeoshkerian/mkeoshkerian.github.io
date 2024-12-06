@@ -206,16 +206,169 @@
                 margin-bottom: 10px;
             }
 
+            .game-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+
             .card-front {
                 padding: 5px;
             }
         }
-
-        @media (max-width: 480px) {
-            .game-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
     </style>
 </head>
-[Rest of the code remains the same as before, just updating the email in the tracking events]
+<body>
+    <div class="header">
+        <h1>Tech Match</h1>
+        <p>Match the company pairs that Michael has helped expand to Toronto!</p>
+    </div>
+
+    <div class="stats">
+        <div>Moves: <span id="moves">0</span></div>
+        <div>Matches: <span id="matches">0</span>/10</div>
+    </div>
+
+    <div class="game-grid" id="gameGrid"></div>
+
+    <div class="win-screen" id="winScreen">
+        <h2>Congratulations!</h2>
+        <p>You've matched all companies!</p>
+        <p>Total moves: <span id="finalMoves">0</span></p>
+        <button class="button" onclick="resetGame()">Play Again</button>
+    </div>
+
+    <script>
+        const companies = [
+            {name: 'Netflix', class: 'netflix', icon: 'fas fa-play'},
+            {name: 'Roku', class: 'roku', icon: 'fas fa-tv'},
+            {name: 'Cerebras', class: 'cerebras', icon: 'fas fa-microchip'},
+            {name: 'Groq', class: 'groq', icon: 'fas fa-brain'},
+            {name: 'Rippling', class: 'rippling', icon: 'fas fa-users'},
+            {name: 'Astera Labs', class: 'astera', icon: 'fas fa-network-wired'},
+            {name: 'Recursion', class: 'recursion', icon: 'fas fa-dna'},
+            {name: 'Databricks', class: 'databricks', icon: 'fas fa-database'},
+            {name: 'Ripple', class: 'ripple', icon: 'fas fa-money-bill-wave'},
+            {name: 'Sledgehammer', class: 'sledgehammer', icon: 'fas fa-gamepad'}
+        ];
+
+        let cards = [];
+        let flippedCards = [];
+        let moves = 0;
+        let matches = 0;
+        let canFlip = true;
+
+        function createCard(company) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="card-front ${company.class}">
+                    <span>${company.name}</span>
+                    <i class="company-icon ${company.icon}"></i>
+                </div>
+                <div class="card-back">?</div>
+            `;
+            return card;
+        }
+
+        function initializeGame() {
+            const gameGrid = document.getElementById('gameGrid');
+            gameGrid.innerHTML = '';
+            
+            const cardPairs = [...companies, ...companies]
+                .sort(() => Math.random() - 0.5);
+            
+            cardPairs.forEach((company, index) => {
+                const card = createCard(company);
+                cards[index] = card;
+                
+                card.addEventListener('click', () => flipCard(index));
+                gameGrid.appendChild(card);
+            });
+
+            // Track game start
+            gtag('event', 'game_start', {
+                'event_category': 'Game'
+            });
+        }
+
+        function flipCard(index) {
+            const card = cards[index];
+            
+            if (!canFlip || card.classList.contains('flipped') || 
+                card.classList.contains('matched') || 
+                flippedCards.includes(index)) {
+                return;
+            }
+
+            card.classList.add('flipped');
+            flippedCards.push(index);
+
+            if (flippedCards.length === 2) {
+                moves++;
+                document.getElementById('moves').textContent = moves;
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            canFlip = false;
+            const [first, second] = flippedCards.map(index => cards[index]);
+            const firstCompany = first.querySelector('.card-front').textContent;
+            const secondCompany = second.querySelector('.card-front').textContent;
+
+            if (firstCompany === secondCompany) {
+                matches++;
+                document.getElementById('matches').textContent = matches;
+                
+                first.classList.add('matched');
+                second.classList.add('matched');
+                
+                // Track successful match
+                gtag('event', 'match_found', {
+                    'event_category': 'Game',
+                    'event_label': firstCompany
+                });
+                
+                if (matches === companies.length) {
+                    showWinScreen();
+                    // Track game completion
+                    gtag('event', 'game_complete', {
+                        'event_category': 'Game',
+                        'event_label': `Moves: ${moves}`
+                    });
+                }
+            } else {
+                setTimeout(() => {
+                    first.classList.remove('flipped');
+                    second.classList.remove('flipped');
+                }, 1000);
+                // Track failed match
+                gtag('event', 'match_failed', {
+                    'event_category': 'Game'
+                });
+            }
+
+            setTimeout(() => {
+                flippedCards = [];
+                canFlip = true;
+            }, 1000);
+        }
+
+        function showWinScreen() {
+            document.getElementById('finalMoves').textContent = moves;
+            document.getElementById('winScreen').style.display = 'block';
+        }
+
+        function resetGame() {
+            moves = 0;
+            matches = 0;
+            document.getElementById('moves').textContent = '0';
+            document.getElementById('matches').textContent = '0';
+            document.getElementById('winScreen').style.display = 'none';
+            initializeGame();
+        }
+
+        initializeGame();
+    </script>
+</body>
+</html>
