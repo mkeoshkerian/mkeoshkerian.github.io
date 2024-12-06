@@ -218,13 +218,13 @@
         function createCard(company) {
             const card = document.createElement('div');
             card.className = 'card';
-            card.innerHTML = 
+            card.innerHTML = `
                 <div class="card-front ${company.class}">
                     <span>${company.name}</span>
                     <i class="company-icon ${company.icon}"></i>
                 </div>
                 <div class="card-back">?</div>
-            ;
+            `;
             return card;
         }
 
@@ -282,7 +282,7 @@
                 if (matches === companies.length) {
                     showWinScreen();
                     // Track game completion
-                    trackGameEvent('game_complete', 'Game', Moves: ${moves});
+                    trackGameEvent('game_complete', 'Game', `Moves: ${moves}`);
                 }
             } else {
                 setTimeout(() => {
@@ -317,6 +317,3 @@
     </script>
 </body>
 </html>
-
-ChatGPT said:
-ChatGPT
