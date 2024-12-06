@@ -20,7 +20,6 @@
             --bg-secondary: #1a1f2e;
             --accent-color: #7dd3fc;
             --text-primary: #e6e6e6;
-            --card-size: 140px;
         }
 
         body {
@@ -48,14 +47,14 @@
 
         .game-grid {
             display: grid;
-            grid-template-columns: repeat(5, var(--card-size));
+            grid-template-columns: repeat(5, 1fr);
             gap: 15px;
-            max-width: calc(var(--card-size) * 5 + 60px);
+            max-width: 1000px;
         }
 
         .card {
-            width: var(--card-size);
-            height: calc(var(--card-size) * 1.2);
+            width: 140px;
+            height: 180px;
             position: relative;
             perspective: 1000px;
         }
@@ -119,19 +118,14 @@
         }
 
         @media (max-width: 768px) {
-            :root {
-                --card-size: 100px;
-            }
-
             .game-grid {
-                grid-template-columns: repeat(3, var(--card-size));
+                grid-template-columns: repeat(3, 1fr);
                 gap: 10px;
             }
 
-            .stats {
-                flex-direction: column;
-                align-items: center;
-                font-size: 1em;
+            .card {
+                width: 100px;
+                height: 130px;
             }
         }
     </style>
