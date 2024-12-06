@@ -88,16 +88,18 @@
             backface-visibility: hidden;
             border-radius: 8px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
             border: 2px solid var(--accent-color);
         }
 
         .card-front {
             background: var(--bg-secondary);
             transform: rotateY(180deg);
-            flex-direction: column;
             color: white;
         }
 
@@ -105,9 +107,9 @@
             background: var(--accent-color);
         }
 
-        .matched .card-inner {
-            transform: scale(1.1);
+        .matched {
             opacity: 0.6;
+            pointer-events: none;
         }
 
         @media (max-width: 768px) {
