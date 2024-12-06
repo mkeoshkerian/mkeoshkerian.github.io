@@ -90,13 +90,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5em;
+            font-size: 1.2em;
             border: 2px solid var(--accent-color);
         }
 
         .card-front {
             background: var(--bg-secondary);
             transform: rotateY(180deg);
+            color: var(--text-primary);
+            flex-direction: column;
         }
 
         .card-back {
@@ -159,8 +161,9 @@
             card.classList.add('card');
             card.innerHTML = `
                 <div class="card-inner">
-                    <div class="card-front" style="background: ${company.color};">
-                        <i class="${company.icon}" style="font-size: 2em; color: #fff;"></i>
+                    <div class="card-front">
+                        <i class="${company.icon}" style="font-size: 2em; color: ${company.color};"></i>
+                        <p>${company.name}</p>
                     </div>
                     <div class="card-back"></div>
                 </div>
