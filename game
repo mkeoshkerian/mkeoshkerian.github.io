@@ -1,0 +1,59 @@
+[Previous code remains the same until just before closing </head> tag, where we add:]
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YCFL3R1VNF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YCFL3R1VNF');
+
+        // Track game events
+        function trackGameEvent(action, category = 'Game', label = '') {
+            gtag('event', action, {
+                'event_category': category,
+                'event_label': label
+            });
+        }
+    </script>
+</head>
+
+[Previous code remains the same, but we'll add tracking to key game actions in the script section:]
+
+        function checkMatch() {
+            canFlip = false;
+            const [first, second] = flippedCards.map(index => cards[index]);
+            const firstCompany = first.querySelector('.card-front').textContent;
+            const secondCompany = second.querySelector('.card-front').textContent;
+
+            if (firstCompany === secondCompany) {
+                matches++;
+                document.getElementById('matches').textContent = matches;
+                
+                first.classList.add('matched');
+                second.classList.add('matched');
+                
+                // Track successful match
+                trackGameEvent('match_found', 'Game', firstCompany);
+                
+                if (matches === companies.length) {
+                    showWinScreen();
+                    // Track game completion
+                    trackGameEvent('game_complete', 'Game', `Moves: ${moves}`);
+                }
+            } else {
+                setTimeout(() => {
+                    first.classList.remove('flipped');
+                    second.classList.remove('flipped');
+                }, 1000);
+                // Track failed match attempt
+                trackGameEvent('match_failed', 'Game');
+            }
+
+            setTimeout(() => {
+                flippedCards = [];
+                canFlip = true;
+            }, 1000);
+        }
+
+[Rest of previous code remains the same]
