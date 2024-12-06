@@ -77,20 +77,40 @@
 
         /* Main Content */
         main {
+            display: flex;
+            gap: 2rem;
             padding: 4rem 0;
         }
 
         .about-section {
+            flex: 3;
             background: var(--bg-secondary);
             border-radius: 8px;
             padding: 2rem;
-            margin-top: 2rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .about-section h2 {
             color: var(--accent-color);
             margin-bottom: 1rem;
+        }
+
+        .highlight-section {
+            flex: 1;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .highlight-section h2 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .highlight-section p {
+            color: var(--text-secondary);
         }
 
         /* Footer */
@@ -175,7 +195,13 @@
     <main class="container">
         <div class="about-section">
             <h2>> About</h2>
-            <p>[About section coming soon...]</p>
+            <p>Michael Keoshkerian is a challenge-seeker passionate about forging connections, supporting community success, and enabling builders to thrive. As a proud graduate of the University of Toronto and OCAD University, he combines a love of classical history and design with expertise in foreign direct investment, venture capital, and strategic relationships. With a career spanning senior roles in government, academia, and investment attraction, Michael has directly contributed to over $600 million in investments and 2,500 jobs in Toronto. He strives to uplift others and spotlight those who deserve recognition.</p>
+        </div>
+
+        <div class="highlight-section">
+            <h2>Tech Match Game</h2>
+            <p>Explore the companies Michael has helped expand into the Toronto Region, including Netflix, Ripple, Roku, and more. Test your memory and see how well you know these innovative players in the Tech Match Game!</p>
+            <a href="game.html" style="color: var(--accent-color); text-decoration: underline;">Play the Game</a>
         </div>
     </main>
 
@@ -184,7 +210,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>About</h3>
-                    <p>A space for exploring technology, sharing ideas, and documenting the journey through code.</p>
+                    <p>Michael is passionate about connecting ideas, people, and opportunities to create lasting impact in the Toronto Region and beyond.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -197,7 +223,7 @@
                     <h3>Connect</h3>
                     <div class="social-links">
                         <a href="https://www.linkedin.com/in/michael-keoshkerian/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="mailto:michael.keoshkerian@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="mailto:mkeoshkerian@torontoglobal.ca" title="Email"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
             </div>
