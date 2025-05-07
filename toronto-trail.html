@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toronto Trail</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f7ff;
+        }
+        
+        #game-area {
+            display: flex;
+            max-width: 800px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+        
+        #toronto-fact {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 5px;
+            border-left: 4px solid #0066cc;
+            text-align: left;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .fact-label {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background-color: #0066cc;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            font-style: normal;
+        }
+        
+        #progress-bar {
+            width: 20px;
+            height: 600px;
+            background: linear-gradient(to bottom, rgba(0, 102, 204, 0.2), rgba(227, 76, 50, 0.2));
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        #progress-fill {
+            width: 100%;
+            background: linear-gradient(to bottom, #0066cc, #e34c32);
+            border-radius: 10px;
+            position: absolute;
+            bottom: 0;
+            transition: height 0.3s;
+        }
+        
+        #progress-marker {
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            border: 3px solid #0066cc;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            transition: bottom 0.3s;
+        }
+        
+        #progress-labels {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 600px;
+            padding: 10px 0;
+            margin-right: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        #progress-labels div:first-child {
+            color: #0066cc;
+        }
+        
+        #progress-labels div:last-child {
+            color: #e34c32;
+        }
+        
+        #game-container {
+            width: 400px;
+            height: 600px;
+            position: relative;
+            background: linear-gradient(to bottom, #1976D2, #64B5F6, #E57373);
+            border: 2px solid #0066cc;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            touch-action: none;
+        }
+        
+        #player {
+            width: 40px;
+            height: 40px;
+            background-color: #4CAF50;
+            position: absolute;
+            bottom: 20px;
+            left: 180px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .obstacle {
+            width: 60px;
+            height: 40px;
+            background-color: #FF5722;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .powerup {
+            width: 30px;
+            height: 30px;
+            background-color: #0066cc;
+            border-radius: 50%;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        #score-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            max-width: 450px;
+            margin: 20px auto;
+        }
+        
+        .score-box {
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 120px;
+        }
+        
+        .score-label {
+            font-weight: bold;
+            color: #0066cc;
+            margin-bottom: 5px;
+        }
+        
+        #controls {
+            margin: 20px 0;
+        }
+        
+        button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 5px;
+        }
+        
+        button:hover {
+            background-color: #004c99;
+        }
+        
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        #shield-active {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #0066cc;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            animation: pulse 1.5s infinite;
+        }
+        
+        #notification-popup {
+            position: absolute;
+            top: 50px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border-left: 4px solid #0066cc;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            max-width: 250px;
+            display: none;
+            z-index: 30;
+            text-align: left;
+            font-size: 14px;
+            animation: fadeIn 0.3s, fadeOut 0.3s 2.7s;
+            animation-fill-mode: forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        #game-over {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            z-index: 100;
+            border-radius: 10px;
+        }
+        
+        #game-over h2 {
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        #game-over p {
+            margin-bottom: 20px;
+            max-width: 80%;
+            text-align: center;
+        }
+        
+        #mobile-controls {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-wrap: wrap;
+            width: 160px;
+            gap: 5px;
+            justify-content: center;
+            z-index: 20;
+        }
+        
+        .control-btn {
+            width: 60px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 2px solid #0066cc;
+            border-radius: 8px;
+            font-size: 24px;
+            color: #0066cc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            touch-action: manipulation;
+        }
+        
+        /* Mobile styles */
+        @media (max-width: 800px) {
+            body {
+                padding: 10px;
+            }
+            
+            #game-area {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            #progress-bar {
+                width: 90%;
+                height: 20px;
+                margin: 0 auto;
+            }
+            
+            #progress-fill {
+                height: 100%;
+                width: 0%;
+                bottom: auto;
+                left: 0;
+                transition: width 0.3s;
+            }
+            
+            #progress-marker {
+                top: 50%;
+                left: 0%;
+                bottom: auto;
+                transform: translateY(-50%);
+                transition: left 0.3s;
+            }
+            
+            #progress-labels {
+                flex-direction: row;
+                width: 90%;
+                height: auto;
+                justify-content: space-between;
+                padding: 0;
+                margin: 5px auto;
+            }
+            
+            #game-container {
+                width: 90%;
+                max-width: 400px;
+                height: 500px;
+            }
+            
+            #toronto-fact {
+                font-size: 14px;
+                padding: 10px;
+            }
+            
+            #notification-popup {
+                top: auto;
+                bottom: 120px;
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                width: 80%;
+                max-width: 300px;
+            }
+            
+            #score-container {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .score-box {
+                width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="toronto-fact">
+        <span class="fact-label">Toronto Fact</span>
+        Toronto is home to North America's fourth-largest tech talent pool, with over 280,000 tech workers.
+    </div>
+    
+    <div id="game-area">
+        <div id="progress-labels">
+            <div>Toronto</div>
+            <div>San Francisco</div>
+        </div>
+        
+        <div id="progress-bar">
+            <div id="progress-fill" style="height: 0%"></div>
+            <div id="progress-marker" style="bottom: 0%"></div>
+        </div>
+        
+        <div id="game-container">
+            <div id="player">🏢</div>
+            <div id="shield-active">Shield Active!</div>
+            <div id="notification-popup">
+                <div id="notification-content"></div>
+            </div>
+            
+            <div id="game-over">
+                <h2 id="game-over-title">Game Over</h2>
+                <p id="game-over-message">Your expansion to Toronto was blocked!</p>
+                <button id="restart-btn">Try Again</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="score-container">
+        <div class="score-box">
+            <div class="score-label">Score</div>
+            <div id="score">0</div>
+        </div>
+        <div class="score-box">
+            <div class="score-label">Progress</div>
+            <div id="progress">0%</div>
+        </div>
+        <div class="score-box">
+            <div class="score-label">TG Shield</div>
+            <div id="shield-status">❌</div>
+        </div>
+    </div>
+    
+    <div id="controls">
+        <button id="start-btn">Start Game</button>
+        <button id="pause-btn" disabled>Pause</button>
+    </div>
+    
+    <script>
+        // Game elements
+        const gameContainer = document.getElementById('game-container');
+        const player = document.getElementById('player');
+        const scoreDisplay = document.getElementById('score');
+        const progressDisplay = document.getElementById('progress');
+        const progressFill = document.getElementById('progress-fill');
+        const progressMarker = document.getElementById('progress-marker');
+        const shieldStatus = document.getElementById('shield-status');
+        const shieldActive = document.getElementById('shield-active');
+        const startBtn = document.getElementById('start-btn');
+        const pauseBtn = document.getElementById('pause-btn');
+        const gameOver = document.getElementById('game-over');
+        const gameOverTitle = document.getElementById('game-over-title');
+        const gameOverMessage = document.getElementById('game-over-message');
+        const restartBtn = document.getElementById('restart-btn');
+        const torontoFact = document.getElementById('toronto-fact');
+        const notificationPopup = document.getElementById('notification-popup');
+        const notificationContent = document.getElementById('notification-content');
+        
+        // Game configuration
+        const containerWidth = gameContainer.offsetWidth;
+        const containerHeight = gameContainer.offsetHeight;
+        const playerWidth = player.offsetWidth;
+        const playerHeight = player.offsetHeight;
+        
+        // Toronto facts
+        const torontoFacts = [
+            "Toronto is home to North America's fourth-largest tech talent pool, with over 280,000 tech workers.",
+            "More tech jobs were created in Toronto than in San Francisco and Seattle combined in recent years.",
+            "Toronto has the most diverse population in North America, with over 180 languages spoken.",
+            "The Toronto-Waterloo corridor has the second-highest density of startups in the world.",
+            "Toronto ranks in the top 5 globally for quality of life and safety.",
+            "Over 40% of Toronto's population was born outside of Canada, creating a diverse talent pool.",
+            "Toronto's AI ecosystem grew by over 500% in the past five years.",
+            "The cost of operating a tech business in Toronto is about 30% lower than in San Francisco.",
+            "Toronto Global helps tech companies navigate regulatory requirements when expanding to Canada.",
+            "Toronto Global provides free site selection services to companies expanding to the region.",
+            "Toronto Global connects companies with local VCs, incubators, and research institutions.",
+            "Toronto is a hub for AI research with institutions like Vector Institute.",
+            "Toronto's tech ecosystem includes over 6,000 startups and 18,000 tech companies.",
+            "Toronto Global offers customized market intelligence for companies looking to expand.",
+            "The Global Talent Stream program can process work permits for skilled workers in just 2 weeks."
+        ];
+        
+        // Obstacle types
+        const obstacles = [
+            { name: "Talent", emoji: "👨‍💻❌", color: "#FF5722", solution: "Toronto Global connects you with the local talent pool", description: "Your talent acquisition strategy is facing challenges." },
+            { name: "Site", emoji: "📍❌", color: "#9C27B0", solution: "Toronto Global provides insight on best locations", description: "You're struggling to find the right location for your expansion." },
+            { name: "Incentive", emoji: "💰❌", color: "#F44336", solution: "Toronto Global helps access SRED and other incentives", description: "You're missing out on valuable financial incentives." },
+            { name: "Ecosystem", emoji: "🤝❌", color: "#673AB7", solution: "Toronto Global introduces you to universities, VCs, and incubators", description: "You lack connections within the local business ecosystem." },
+            { name: "Border", emoji: "🛂❌", color: "#E91E63", solution: "Toronto Global provides guidance on cross-border logistics", description: "Cross-border regulations are slowing down your expansion." },
+            { name: "Market", emoji: "📊❌", color: "#3F51B5", solution: "Toronto Global offers customized market intelligence", description: "You need better market intelligence to succeed." }
+        ];
+        
+        // Powerup types
+        const powerups = [
+            { name: "Talent Excellence", emoji: "👨‍💻✅", color: "#4CAF50", description: "Toronto Global connected you with top talent resources!" },
+            { name: "Site Supreme", emoji: "📍✅", color: "#009688", description: "Toronto Global found you the perfect location!" },
+            { name: "Incentive Mastery", emoji: "💰✅", color: "#8BC34A", description: "Toronto Global secured valuable incentives for your business!" },
+            { name: "Ecosystem Integration", emoji: "🤝✅", color: "#00BCD4", description: "Toronto Global connected you with key business partners!" },
+            { name: "Border Success", emoji: "🛂✅", color: "#03A9F4", description: "Toronto Global simplified your cross-border strategy!" },
+            { name: "Market Achievement", emoji: "📊✅", color: "#2196F3", description: "Toronto Global provided crucial market intelligence!" }
+        ];
+        
+        // Game state
+        let gameActive = false;
+        let paused = false;
+        let score = 0;
+        let progress = 0;
+        let hasShield = false;
+        let shieldTimer = 0;
+        let gameLoopInterval;
+        let obstacleInterval;
+        let powerupInterval;
+        let factInterval;
+        let allObstacles = [];
+        let allPowerups = [];
+        let playerPosition = {
+            x: containerWidth / 2 - playerWidth / 2,
+            y: containerHeight - playerHeight - 20
+        };
+        
+        // Control keys status
+        const keys = {
+            ArrowLeft: false,
+            ArrowRight: false,
+            ArrowUp: false,
+            ArrowDown: false
+        };
+        
+        // Set initial player position
+        player.style.left = playerPosition.x + 'px';
+        player.style.top = playerPosition.y + 'px';
+        
+        // Check if on mobile
+        function isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 800;
+        }
+        
+        // Event listeners
+        startBtn.addEventListener('click', startGame);
+        pauseBtn.addEventListener('click', togglePause);
+        restartBtn.addEventListener('click', restartGame);
+        
+        // Create mobile control buttons
+        const mobileControls = document.createElement('div');
+        mobileControls.id = 'mobile-controls';
+        gameContainer.appendChild(mobileControls);
+        
+        // Create four direction buttons
+        const directions = ['up', 'left', 'down', 'right'];
+        const symbols = ['↑', '←', '↓', '→'];
+        
+        directions.forEach((dir, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'control-btn';
+            btn.textContent = symbols[index];
+            mobileControls.appendChild(btn);
+            
+            // Handle touch events for buttons
+            btn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                if (!gameActive || paused) return;
+                keys[`Arrow${dir.charAt(0).toUpperCase() + dir.slice(1)}`] = true;
+            });
+            
+            btn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                if (!gameActive || paused) return;
+                keys[`Arrow${dir.charAt(0).toUpperCase() + dir.slice(1)}`] = false;
+            });
+        });
+        
+        // Direct touch controls on game container
+        let touchStartX, touchStartY;
+        let isPlayerMoving = false;
+        
+        gameContainer.addEventListener('touchstart', function(e) {
+            if (!gameActive || paused) return;
+            const touch = e.touches[0];
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+            isPlayerMoving = true;
+            e.preventDefault();
+        }, { passive: false });
+        
+        gameContainer.addEventListener('touchmove', function(e) {
+            if (!isPlayerMoving || !gameActive || paused) return;
+            const touch = e.touches[0];
+            const touchMoveX = touch.clientX - touchStartX;
+            const touchMoveY = touch.clientY - touchStartY;
+            
+            // Update position
+            const newX = Math.max(0, Math.min(containerWidth - playerWidth, playerPosition.x + touchMoveX / 5));
+            const newY = Math.max(0, Math.min(containerHeight - playerHeight, playerPosition.y + touchMoveY / 5));
+            
+            playerPosition.x = newX;
+            playerPosition.y = newY;
+            
+            player.style.left = playerPosition.x + 'px';
+            player.style.top = playerPosition.y + 'px';
+            
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+            e.preventDefault();
+        }, { passive: false });
+        
+        gameContainer.addEventListener('touchend', function() {
+            isPlayerMoving = false;
+        });
+        
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            if (keys[e.code] !== undefined) {
+                keys[e.code] = true;
+                e.preventDefault();
+            }
+        });
+        
+        document.addEventListener('keyup', (e) => {
+            if (keys[e.code] !== undefined) {
+                keys[e.code] = false;
+                e.preventDefault();
+            }
+        });
+        
+        // Start game
+        function startGame() {
+            if (gameActive) return;
+            
+            // Reset game state
+            resetGame();
+            
+            // Start game loop
+            gameLoopInterval = setInterval(gameLoop, 20);
+            obstacleInterval = setInterval(createObstacle, 1200);
+            powerupInterval = setInterval(createPowerup, 5000);
+            factInterval = setInterval(changeTorontoFact, 3000);
+            
+            gameActive = true;
+            paused = false;
+            
+            // Update button states
+            startBtn.disabled = true;
+            pauseBtn.disabled = false;
+        }
+        
+        // Game loop
+        function gameLoop() {
+            if (paused) return;
+            
+            // Update player position
+            movePlayer();
+            
+            // Move obstacles and check collisions
+            moveObstacles();
+            
+            // Move powerups and check collisions
+            movePowerups();
+            
+            // Update score
+            score++;
+            scoreDisplay.textContent = score;
+            
+            // Update progress
+            progress = Math.min(Math.floor((score / 2000) * 100), 100);
+            progressDisplay.textContent = progress + '%';
+            
+            // Update progress bar based on device
+            if (isMobile()) {
+                // Mobile: horizontal progress bar
+                progressFill.style.width = progress + '%';
+                progressMarker.style.left = progress + '%';
+            } else {
+                // Desktop: vertical progress bar
+                progressFill.style.height = progress + '%';
+                progressMarker.style.bottom = progress + '%';
+            }
+            
+            // Check for win condition
+            if (progress >= 100) {
+                endGame(true);
+            }
+            
+            // Update shield timer
+            if (hasShield && shieldTimer > 0) {
+                shieldTimer--;
+                if (shieldTimer <= 0) {
+                    hasShield = false;
+                    shieldStatus.textContent = '❌';
+                    shieldActive.style.display = 'none';
+                    player.style.backgroundColor = '#4CAF50';
+                }
+            }
+        }
+        
+        // Move player based on key presses
+        function movePlayer() {
+            if (keys.ArrowLeft && playerPosition.x > 0) {
+                playerPosition.x -= 5;
+            }
+            if (keys.ArrowRight && playerPosition.x < containerWidth - playerWidth) {
+                playerPosition.x += 5;
+            }
+            if (keys.ArrowUp && playerPosition.y > 0) {
+                playerPosition.y -= 5;
+            }
+            if (keys.ArrowDown && playerPosition.y < containerHeight - playerHeight) {
+                playerPosition.y += 5;
+            }
+            
+            player.style.left = playerPosition.x + 'px';
+            player.style.top = playerPosition.y + 'px';
+        }
+        
+        // Create a new obstacle
+        function createObstacle() {
+            if (paused || !gameActive) return;
+            
+            const randomObstacle = obstacles[Math.floor(Math.random() * obstacles.length)];
+            
+            const obstacle = document.createElement('div');
+            obstacle.className = 'obstacle';
+            obstacle.textContent = randomObstacle.emoji;
+            obstacle.style.backgroundColor = randomObstacle.color;
+            obstacle.style.left = Math.random() * (containerWidth - 60) + 'px';
+            obstacle.style.top = '-40px';
+            
+            // Store obstacle data
+            obstacle.dataset.type = randomObstacle.name;
+            obstacle.dataset.solution = randomObstacle.solution;
+            obstacle.dataset.description = randomObstacle.description;
+            
+            gameContainer.appendChild(obstacle);
+            allObstacles.push(obstacle);
+        }
+        
+        // Move obstacles and check collisions
+        function moveObstacles() {
+            for (let i = allObstacles.length - 1; i >= 0; i--) {
+                const obstacle = allObstacles[i];
+                const obstacleTop = parseInt(obstacle.style.top);
+                
+                // Move obstacle
+                obstacle.style.top = (obstacleTop + 3) + 'px';
+                
+                // Remove if off screen
+                if (obstacleTop > containerHeight) {
+                    gameContainer.removeChild(obstacle);
+                    allObstacles.splice(i, 1);
+                    continue;
+                }
+                
+                // Check for collision
+                if (isColliding(obstacle)) {
+                    if (hasShield) {
+                        // Use shield
+                        hasShield = false;
+                        shieldStatus.textContent = '❌';
+                        shieldActive.style.display = 'none';
+                        player.style.backgroundColor = '#4CAF50';
+                        
+                        // Show shield effect
+                        const effect = document.createElement('div');
+                        effect.style.position = 'absolute';
+                        effect.style.left = obstacle.style.left;
+                        effect.style.top = obstacle.style.top;
+                        effect.style.width = '60px';
+                        effect.style.height = '40px';
+                        effect.style.backgroundColor = 'rgba(0, 102, 204, 0.5)';
+                        effect.style.borderRadius = '5px';
+                        effect.style.display = 'flex';
+                        effect.style.justifyContent = 'center';
+                        effect.style.alignItems = 'center';
+                        effect.style.color = 'white';
+                        effect.style.fontWeight = 'bold';
+                        effect.textContent = 'SOLVED!';
+                        effect.style.zIndex = '20';
+                        gameContainer.appendChild(effect);
+                        
+                        // Show notification
+                        showNotification(`Obstacle Overcome: ${obstacle.dataset.type}`, obstacle.dataset.solution, obstacle.style.backgroundColor);
+                        
+                        // Remove effect after animation
+                        setTimeout(() => {
+                            gameContainer.removeChild(effect);
+                        }, 1000);
+                        
+                        // Remove obstacle
+                        gameContainer.removeChild(obstacle);
+                        allObstacles.splice(i, 1);
+                    } else {
+                        // Show notification before game over
+                        showNotification(`Obstacle Hit: ${obstacle.dataset.type}`, obstacle.dataset.description, obstacle.style.backgroundColor);
+                        
+                        // Game over after a brief delay
+                        setTimeout(() => {
+                            hideNotification();
+                            endGame(false, obstacle);
+                        }, 1500);
+                        break;
+                    }
+                }
+            }
+        }
+        
+        // Create a new powerup
+        function createPowerup() {
+            if (paused || !gameActive) return;
+            
+            const randomPowerup = powerups[Math.floor(Math.random() * powerups.length)];
+            
+            const powerup = document.createElement('div');
+            powerup.className = 'powerup';
+            powerup.textContent = randomPowerup.emoji.slice(0, -1); // Remove the checkmark, just show the icon
+            powerup.style.backgroundColor = randomPowerup.color;
+            powerup.style.left = Math.random() * (containerWidth - 30) + 'px';
+            powerup.style.top = '-30px';
+            
+            // Store powerup data
+            powerup.dataset.type = randomPowerup.name;
+            powerup.dataset.description = randomPowerup.description;
+            
+            gameContainer.appendChild(powerup);
+            allPowerups.push(powerup);
+        }
+        
+        // Move powerups and check collisions
+        function movePowerups() {
+            for (let i = allPowerups.length - 1; i >= 0; i--) {
+                const powerup = allPowerups[i];
+                const powerupTop = parseInt(powerup.style.top);
+                
+                // Move powerup
+                powerup.style.top = (powerupTop + 2) + 'px';
+                
+                // Remove if off screen
+                if (powerupTop > containerHeight) {
+                    gameContainer.removeChild(powerup);
+                    allPowerups.splice(i, 1);
+                    continue;
+                }
+                
+                // Check for collision
+                if (isColliding(powerup)) {
+                    // Collect powerup
+                    hasShield = true;
+                    shieldTimer = 300; // 6 seconds at 50ms interval
+                    shieldStatus.textContent = '✅';
+                    shieldActive.style.display = 'block';
+                    player.style.backgroundColor = '#0066cc';
+                    
+                    // Show notification
+                    showNotification(powerup.dataset.type, powerup.dataset.description, powerup.style.backgroundColor);
+                    
+                    // Remove powerup
+                    gameContainer.removeChild(powerup);
+                    allPowerups.splice(i, 1);
+                }
