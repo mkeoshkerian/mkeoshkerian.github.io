@@ -1,33 +1,10 @@
-<!-- Updated index.html with Google Analytics, Video Link, and new dark theme -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Space</title>
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YCFL3R1VNF"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-YCFL3R1VNF');
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <title>Michael Keoshkerian</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        
-        :root {
-            --bg-primary: #1e1e1e;       /* Darker background like the chat */
-            --bg-secondary: #2d2d2d;     /* Slightly lighter for sections */
-            --accent-color: #f97c73;     /* Orange-red accent similar to Claude's icons */
-            --text-primary: #e6e6e6;     /* Light text for main content */
-            --text-secondary: #a8a8a8;   /* Grey text for secondary content */
-            --font-mono: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -35,251 +12,284 @@
         }
 
         body {
-            font-family: var(--font-mono);
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
+            color: #333;
+            background-color: #faf7f0;
         }
 
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Header */
-        header {
-            padding: 4rem 0 2rem;
-            text-align: center;
-            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-        }
-
-        .site-title {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .site-subtitle {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            letter-spacing: 2px;
-        }
-
-        .tech-clock {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: 2rem;
-            opacity: 0.8;
-        }
-
-        .cursor {
-            display: inline-block;
-            background: var(--accent-color);
-            width: 8px;
-            height: 15px;
-            animation: blink 1s infinite;
-            vertical-align: middle;
-            margin-left: 4px;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0 }
-        }
-
-        /* Main Content */
-        main {
             display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: space-between;
-            padding: 4rem 0;
+            min-height: 100vh;
         }
 
-        .section {
-            flex: 1 1 calc(50% - 1rem);
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
+        /* Sidebar Table of Contents */
+        .sidebar {
+            width: 280px;
+            position: fixed;
+            height: 100vh;
+            background-color: #f5f2eb;
+            border-right: 1px solid #e8e4db;
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
         }
 
-        .section h2 {
-            color: var(--accent-color);
-            margin-bottom: 1rem;
+        .sidebar h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+            font-weight: 600;
         }
 
-        .section p {
-            color: var(--text-secondary);
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 4rem;
-            padding: 2rem 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .footer-section h3 {
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-
-        .footer-section p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .footer-links {
+        .toc {
             list-style: none;
         }
 
-        .footer-links li {
+        .toc li {
             margin-bottom: 0.5rem;
         }
 
-        .footer-links a {
-            color: var(--text-secondary);
+        .toc a {
+            display: block;
+            padding: 0.5rem 0;
+            color: #666;
             text-decoration: none;
-            transition: color 0.3s;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+            padding-left: 1rem;
         }
 
-        .footer-links a:hover {
-            color: var(--accent-color);
+        .toc a:hover {
+            color: #2c2c2c;
+            background-color: rgba(0,0,0,0.02);
         }
 
-        .social-links {
-            display: flex;
-            gap: 1rem;
+        .toc a.active {
+            color: #2c2c2c;
+            border-left-color: #8b7355;
+            background-color: rgba(139, 115, 85, 0.1);
+            font-weight: 500;
         }
 
-        .social-links a {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            transition: color 0.3s;
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            padding: 3rem 4rem;
+            max-width: 800px;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 2rem;
+        }
+
+        .section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c2c2c;
+            font-weight: 700;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+            font-weight: 600;
+        }
+
+        .section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c2c2c;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        .section a {
+            color: #8b7355;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+
+        .section a:hover {
+            color: #6b5635;
+        }
+
+        .game-card, .project-card {
+            background-color: #f9f6f0;
+            border: 1px solid #e8e4db;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .game-card h4, .project-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2c2c2c;
+        }
+
+        .game-card p, .project-card p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #8b7355;
+            color: white;
             text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease;
         }
 
-        .social-links a:hover {
-            color: var(--accent-color);
+        .btn:hover {
+            background-color: #6b5635;
+            color: white;
         }
 
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .footer-content {
-                grid-template-columns: 1fr;
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 1.5rem;
             }
-            .tech-clock {
-                font-size: 0.7rem;
+
+            .main-content {
+                margin-left: 0;
+                padding: 2rem 1.5rem;
             }
-            .section {
-                flex: 1 1 100%;
+
+            .container {
+                flex-direction: column;
+            }
+
+            .section h1 {
+                font-size: 2rem;
+            }
+
+            .section h2 {
+                font-size: 1.6rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1 class="site-title">> Michael Keoshkerian</h1>
-            <p class="site-subtitle">Relationships | Cross-Border Investments | International Strategy</p>
-            <p class="tech-clock">
-                > TOR: 2024.11.29_12:29_EST | SFO: 2024.11.29_09:29_PST | YVN: 2024.11.29_21:29_AMT<span class="cursor"></span>
-            </p>
-        </div>
-    </header>
-
-    <main class="container">
-        <div class="section">
-            <h2>> Who I Am</h2>
-            <p>Hi, I'm Mike. I connect people, solve complex puzzles, and work across borders. 
-                <a href='https://www.linkedin.com/in/michael-keoshkerian/' target='_blank' style='color: var(--accent-color); text-decoration: underline;'>Check out my LinkedIn for more!</a></p>
-        </div>
-
-        <div class="section">
-            <h2>> Tech Match Game</h2>
-            <p>Explore the companies I've helped expand into the Toronto Region, including Netflix, Ripple, Roku, and more. Test your memory in the Tech Match Game!</p>
-            <a href="game.html" style="color: var(--accent-color); text-decoration: underline;">Play the Game</a>
-        </div>
-
-        <div class="section">
-            <h2>> What I'm Doing</h2>
-            <p>Current projects and initiatives:</p>
-            <ul style="list-style: none; text-align: left; margin-top: 15px;">
-                <li style="margin-bottom: 10px;"><a href="https://www.linkedin.com/posts/michael-keoshkerian_toronto-pancakes-coffee-activity-7312484159669608448-7VtM" target="_blank" style="color: var(--accent-color); text-decoration: underline;">Pancake Leadership Series</a></li>
-                <li style="margin-bottom: 10px;"><a href="https://www.linkedin.com/posts/michael-keoshkerian_sanfrancisco-toronto-activity-7305723598923603968-f9-r" target="_blank" style="color: var(--accent-color); text-decoration: underline;">SF-Toronto Connections</a></li>
+    <div class="container">
+        <!-- Sidebar Table of Contents -->
+        <nav class="sidebar">
+            <h2>Michael Keoshkerian</h2>
+            <ul class="toc">
+                <li><a href="#about" class="toc-link">Who I Am</a></li>
+                <li><a href="#game" class="toc-link">Tech Match Game</a></li>
+                <li><a href="#projects" class="toc-link">Current Projects</a></li>
+                <li><a href="#adventures" class="toc-link">Bay Area Adventures</a></li>
             </ul>
-        </div>
+        </nav>
 
-        <div class="section">
-            <h2>> Bay Area Adventures</h2>
-            <p>An entirely accurate portrayal of my trips to the Bay Area.</p>
-            <a href="https://www.linkedin.com/posts/michael-keoshkerian_sanfrancisco-bayarea-maplesyrupstayswithme-activity-7242495193315229696-wj3_?utm_source=share&utm_medium=member_desktop" target="_blank" style="color: var(--accent-color); text-decoration: underline;">Watch the Video</a>
-        </div>
-    </main>
+        <!-- Main Content -->
+        <main class="main-content">
+            <section id="about" class="section">
+                <h1>Who I Am</h1>
+                <p>Hi, I'm Mike. I connect people, solve complex puzzles, and work across borders.</p>
+                <p>I specialize in helping companies expand into the Toronto Region, bringing together international businesses with local opportunities and talent.</p>
+                <p><a href="https://www.linkedin.com/in/michael-keoshkerian/" target="_blank">Check out my LinkedIn for more!</a></p>
+            </section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>About</h3>
-                    <p>Let me help. If we can work together, reach out.</p>
+            <section id="game" class="section">
+                <h2>Tech Match Game</h2>
+                <div class="game-card">
+                    <h4>Memory Challenge</h4>
+                    <p>Explore the companies I've helped expand into the Toronto Region, including Netflix, Ripple, Roku, and more. Test your memory in the Tech Match Game!</p>
+                    <a href="game.html" class="btn">Play the Game</a>
                 </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="game.html">Tech Match Game</a></li>
-                    </ul>
+            </section>
+
+            <section id="projects" class="section">
+                <h2>What I'm Doing</h2>
+                <p>Current projects and initiatives:</p>
+                <div class="project-card">
+                    <h4>Business Development & Expansion</h4>
+                    <p>Helping technology companies navigate the Toronto market and establish successful operations in Canada.</p>
                 </div>
-                <div class="footer-section">
-                    <h3>Connect</h3>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/michael-keoshkerian/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="mailto:mkeoshkerian@torontoglobal.ca" title="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
+                <div class="project-card">
+                    <h4>Cross-Border Partnerships</h4>
+                    <p>Building bridges between international businesses and the Toronto Region's thriving tech ecosystem.</p>
                 </div>
-            </div>
-        </div>
-    </footer>
+            </section>
+
+            <section id="adventures" class="section">
+                <h2>Bay Area Adventures</h2>
+                <p>An entirely accurate portrayal of my trips to the Bay Area.</p>
+                <p><a href="https://www.linkedin.com/posts/michael-keoshkerian_sanfrancisco-bayarea-maplesyrupstayswithme-activity-7242495193315229696-wj3_?utm_source=share&utm_medium=member_desktop" target="_blank">Watch the Video</a></p>
+            </section>
+        </main>
+    </div>
 
     <script>
-        function updateClock() {
-            const now = new Date();
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-            // Function to format date and time
-            const formatDateTime = (timeZone) => {
-                return now.toLocaleString('en-US', {
-                    timeZone: timeZone,
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: false,
+        // Highlight active section in table of contents
+        function updateActiveSection() {
+            const sections = document.querySelectorAll('.section');
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
+            let currentActiveSection = '';
+            
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom > 100) {
+                    currentActiveSection = section.id;
+                }
+            });
+            
+            // If no section is in the viewport, highlight the first one that's coming up
+            if (!currentActiveSection) {
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top > 100 && !currentActiveSection) {
+                        currentActiveSection = section.id;
+                    }
                 });
-            };
-
-            // Formatting for each location
-            const tor = formatDateTime('America/Toronto');
-            const sfo = formatDateTime('America/Los_Angeles');
-            const yvn = formatDateTime('Asia/Yerevan');
-
-            // Update the clock display
-            const clockDisplay = `> TOR: ${tor}_EST | SFO: ${sfo}_PST | YVN: ${yvn}_AMT`;
-            document.querySelector('.tech-clock').innerHTML = clockDisplay + '<span class="cursor"></span>';
+            }
+            
+            tocLinks.forEach(link => {
+                const targetId = link.getAttribute('href').substring(1);
+                if (targetId === currentActiveSection) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
         }
 
-        // Initialize and continuously update the clock
-        updateClock();
-        setInterval(updateClock, 1000);
+        // Update active section on scroll
+        window.addEventListener('scroll', updateActiveSection);
+        // Initial update
+        updateActiveSection();
     </script>
 </body>
 </html>
