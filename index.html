@@ -79,6 +79,25 @@
             max-width: 800px;
         }
 
+        .about-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
         .section {
             margin-bottom: 4rem;
             scroll-margin-top: 2rem;
@@ -174,6 +193,17 @@
                 flex-direction: column;
             }
 
+            .about-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .profile-photo {
+                width: 150px;
+                height: 150px;
+            }
+
             .section h1 {
                 font-size: 2rem;
             }
@@ -200,10 +230,15 @@
         <!-- Main Content -->
         <main class="main-content">
             <section id="about" class="section">
-                <h1>Who I Am</h1>
-                <p>I've spent most of my career behind the scenes—helping innovators, policymakers, and founders connect the dots and build meaningful things. From advising tech-focused public policy, to supporting university research partnerships, to now working with global companies looking to grow in Canada through my role at Toronto Global, my work has always centered on enabling others to succeed.</p>
-                <p>I studied at the University of Toronto and OCAD University, and I've always been drawn to the spaces where creativity, strategy, and community meet. While I don't come from a traditional founder path, I care deeply about the people who build—and about doing the quiet work that helps make that possible.</p>
-                <p><a href="https://www.linkedin.com/in/michael-keoshkerian/" target="_blank">My LinkedIn</a></p>
+                <div class="about-section">
+                    <img src="_DSC0973.JPG" alt="Michael Keoshkerian" class="profile-photo" onerror="this.src='_DSC0973.jpg'; this.onerror=null;">
+                    <div class="about-content">
+                        <h1>Who I Am</h1>
+                        <p>I've spent most of my career behind the scenes—helping innovators, policymakers, and founders connect the dots and build meaningful things. From advising tech-focused public policy, to supporting university research partnerships, to now working with global companies looking to grow in Canada through my role at Toronto Global, my work has always centered on enabling others to succeed.</p>
+                        <p>I studied at the University of Toronto and OCAD University, and I've always been drawn to the spaces where creativity, strategy, and community meet. While I don't come from a traditional founder path, I care deeply about the people who build—and about doing the quiet work that helps make that possible.</p>
+                        <p><a href="https://www.linkedin.com/in/michael-keoshkerian/" target="_blank">My LinkedIn</a></p>
+                    </div>
+                </div>
             </section>
 
             <section id="projects" class="section">
@@ -224,7 +259,35 @@
 
             <section id="writing" class="section">
                 <h2>Writing</h2>
-                <p>Coming soon...</p>
+                <div class="project-card">
+                    <h4>Easy Friendships, Heavy Burdens</h4>
+                    <p><em>Persona fatigue, and why real relationships is the long game</em></p>
+                    <p>When I started working at Canadian Tire—my first real job—I ended up shadowing this guy named Kevin. He wasn't management, but he ran the floor like it was his. Everyone liked him. He always had a joke ready, remembered customers' names, and could charm a frustrated senior into buying the wrong socket wrench and thanking him for it...</p>
+                    <p><a href="#" onclick="toggleEssay(); return false;" id="essay-toggle">Read more</a></p>
+                    <div id="full-essay" style="display: none;">
+                        <p>But here's the thing: Kevin didn't actually know that much about tools. He'd ask me questions about SKUs that I, a 17-year-old barely trained seasonal hire, had to guess my way through. But it didn't matter. Kevin understood people—and in retail, that's 90% of the job.</p>
+                        <p>He couldn't explain how he did it. You just had to watch. I did.</p>
+                        <p>From Kevin, I learned how to throw compliments like darts—fast, effortless, and mostly accurate. How a little physical presence—like walking beside someone or handing them the item they were looking for—could build micro-trust. How not to challenge people's assumptions, but to lean into their version of the story.</p>
+                        <p>He taught me that you didn't need to be good all the time—just memorable in the moments that mattered.</p>
+                        <p>The result? Kevin could sell snow shovels in July. He was magnetic. And I wanted to be like him.</p>
+                        <p>So I learned the tricks. I learned how to manage a room, how to read moods and mirror them, how to switch gears depending on who I was with. And it worked. It worked in retail, it worked in interviews, it even worked at parties.</p>
+                        <p>But when it came to actual friendship—real, lasting, show-up-when-it's-bad friendship—it fell apart.</p>
+                        <p>The truth is, you can't game long-haul relationships. You can't endlessly adapt and expect depth to grow. If you're constantly tweaking yourself to be more appealing, you're also telling yourself: who I really am isn't enough.</p>
+                        <p>And worse, it's exhausting.</p>
+                        <p>There are people in your life—maybe just one or two—who always make you feel like you have to be "on." Where hanging out feels like a low-stakes audition. Where you rehearse your stories a bit more, where your shirt fits a little tighter. And maybe at first, it feels like winning. You're in. You're admired.</p>
+                        <p>But you do it 10 times. Then 50. Then 100. And suddenly the whole thing feels like emotional cardio: high effort, low reward.</p>
+                        <p>Every time you shift a little to fit someone's frame, you add friction. It's tiny, at first—just a sliver of self-betrayal. But friction adds up. One day, you'll choose ease over effort. You'll stop texting back. You'll ghost the group chat. And you'll tell yourself you're just "too busy." But really, you're just tired of shape-shifting.</p>
+                        <p>What I've come to believe is that the real killer of meaningful relationships isn't distance or disagreement—it's the slow, subtle erosion of self over time. Because eventually, we all run out of stamina for pretending.</p>
+                        <p>Imagine climbing a mountain with a backpack full of water bottles that aren't yours. That's what curated relationships feel like. You think you're being generous. But you're just making the climb harder, and lonelier.</p>
+                        <p>The people worth building with—the ones you actually want around in ten years—won't need the theatrics. They'll want your messy, quiet, smart-ass, distracted, ridiculous self. Not your "customer-facing" version.</p>
+                        <p>I used to think Kevin was winning. But eventually I noticed he spent most of his shift in the stockroom, scrolling his phone, cracking jokes with whoever wandered back. That charisma wasn't free—it came with a price. And downtime was how he paid for it.</p>
+                        <p>He was recovering. From the weight of the role he had to play.</p>
+                        <p>I've played that role too. For a long time. I wanted to be impressive, magnetic, indispensable. I wanted people to think, "Damn, I need that guy around." And maybe they did—for a while. But it wore me down. Because the second you build a relationship on the performance, you're stuck performing just to keep it.</p>
+                        <p>Real connection is quiet. It's who still shows up when there's nothing left to impress.</p>
+                        <p>So now? I'm aiming for friendships where I don't have to rehearse. Where I don't need a costume. Where being me is—somehow—still enough.</p>
+                        <p>Because the people I want around aren't my customers. They're the ones I'll hike with, over and over, for the rest of my life. And for that kind of trip, I need to pack light.</p>
+                    </div>
+                </div>
             </section>
 
             <section id="adventures" class="section">
@@ -295,6 +358,20 @@
         window.addEventListener('scroll', updateActiveSection);
         // Initial update
         updateActiveSection();
+
+        // Toggle essay display
+        function toggleEssay() {
+            const fullEssay = document.getElementById('full-essay');
+            const toggleLink = document.getElementById('essay-toggle');
+            
+            if (fullEssay.style.display === 'none') {
+                fullEssay.style.display = 'block';
+                toggleLink.textContent = 'Read less';
+            } else {
+                fullEssay.style.display = 'none';
+                toggleLink.textContent = 'Read more';
+            }
+        }
     </script>
 </body>
 </html>
