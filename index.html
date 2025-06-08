@@ -455,13 +455,34 @@
         function toggleEssay() {
             const fullEssay = document.getElementById('full-essay');
             const toggleLink = document.getElementById('essay-toggle');
+            const writingGrid = fullEssay.closest('div[style*="grid-template-columns"]');
             
             if (fullEssay.style.display === 'none') {
                 fullEssay.style.display = 'block';
                 toggleLink.textContent = 'Read less';
+                // Make the expanded content span full width
+                fullEssay.style.position = 'absolute';
+                fullEssay.style.left = '0';
+                fullEssay.style.right = '0';
+                fullEssay.style.background = '#faf7f0';
+                fullEssay.style.padding = '2rem';
+                fullEssay.style.marginTop = '1rem';
+                fullEssay.style.border = '1px solid #e8e4db';
+                fullEssay.style.borderRadius = '8px';
+                fullEssay.style.zIndex = '10';
             } else {
                 fullEssay.style.display = 'none';
                 toggleLink.textContent = 'Read more';
+                // Reset styles
+                fullEssay.style.position = '';
+                fullEssay.style.left = '';
+                fullEssay.style.right = '';
+                fullEssay.style.background = '';
+                fullEssay.style.padding = '';
+                fullEssay.style.marginTop = '';
+                fullEssay.style.border = '';
+                fullEssay.style.borderRadius = '';
+                fullEssay.style.zIndex = '';
             }
         }
 
@@ -473,9 +494,29 @@
             if (fullTradeEssay.style.display === 'none') {
                 fullTradeEssay.style.display = 'block';
                 toggleLink.textContent = 'Read less';
+                // Make the expanded content span full width
+                fullTradeEssay.style.position = 'absolute';
+                fullTradeEssay.style.left = '0';
+                fullTradeEssay.style.right = '0';
+                fullTradeEssay.style.background = '#faf7f0';
+                fullTradeEssay.style.padding = '2rem';
+                fullTradeEssay.style.marginTop = '1rem';
+                fullTradeEssay.style.border = '1px solid #e8e4db';
+                fullTradeEssay.style.borderRadius = '8px';
+                fullTradeEssay.style.zIndex = '10';
             } else {
                 fullTradeEssay.style.display = 'none';
                 toggleLink.textContent = 'Read more';
+                // Reset styles
+                fullTradeEssay.style.position = '';
+                fullTradeEssay.style.left = '';
+                fullTradeEssay.style.right = '';
+                fullTradeEssay.style.background = '';
+                fullTradeEssay.style.padding = '';
+                fullTradeEssay.style.marginTop = '';
+                fullTradeEssay.style.border = '';
+                fullTradeEssay.style.borderRadius = '';
+                fullTradeEssay.style.zIndex = '';
             }
         }
     </script>
