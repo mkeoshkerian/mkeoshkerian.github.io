@@ -33,7 +33,6 @@
             min-height: 100vh;
         }
 
-        /* Sidebar Table of Contents */
         .sidebar {
             width: 280px;
             position: fixed;
@@ -82,7 +81,6 @@
             font-weight: 500;
         }
 
-        /* Main Content */
         .main-content {
             margin-left: 280px;
             padding: 3rem 4rem;
@@ -187,7 +185,6 @@
             color: white !important;
         }
 
-        /* Mobile Responsive */
         @media (max-width: 768px) {
             .sidebar {
                 position: relative;
@@ -224,7 +221,6 @@
                 font-size: 1.6rem;
             }
 
-            /* Stack writing columns on mobile */
             .section div[style*="grid-template-columns"] {
                 display: block !important;
             }
@@ -237,7 +233,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar Table of Contents -->
         <nav class="sidebar">
             <h2>Michael Keoshkerian</h2>
             <ul class="toc">
@@ -250,7 +245,6 @@
             </ul>
         </nav>
 
-        <!-- Main Content -->
         <main class="main-content">
             <section id="about" class="section">
                 <div class="about-section">
@@ -291,11 +285,12 @@
                     <!-- Personal Column -->
                     <div>
                         <h3 style="text-align: center; margin-bottom: 1.5rem; color: #2c2c2c;">Personal</h3>
+                        
                         <div class="project-card">
                             <h4>Easy Friendships, Heavy Burdens</h4>
                             <p><em>Persona fatigue, and why real relationships is the long game</em></p>
                             <p><a href="javascript:void(0);" onclick="toggleEssay();" id="essay-toggle">Read more</a></p>
-                            <div id="full-essay" class="expanded-content" style="display: none;">
+                            <div id="full-essay" style="display: none;">
                                 <p>When I started working at Canadian Tire—my first real job—I ended up shadowing this guy named Kevin. He wasn't management, but he ran the floor like it was his. Everyone liked him. He always had a joke ready, remembered customers' names, and could charm a frustrated senior into buying the wrong socket wrench and thanking him for it.</p>
                                 <p>But here's the thing: Kevin didn't actually know that much about tools. He'd ask me questions about SKUs that I, a 17-year-old barely trained seasonal hire, had to guess my way through. But it didn't matter. Kevin understood people—and in retail, that's 90% of the job.</p>
                                 <p>He couldn't explain how he did it. You just had to watch. I did.</p>
@@ -320,53 +315,57 @@
                                 <p>Because the people I want around aren't my customers. They're the ones I'll hike with, over and over, for the rest of my life. And for that kind of trip, I need to pack light.</p>
                             </div>
                         </div>
+
+                        <div class="project-card">
+                            <h4>The Quiet Permission of Walkabouts</h4>
+                            <p><em>On stepping away to return to yourself</em></p>
+                            <p><a href="javascript:void(0);" onclick="toggleWalkabouts();" id="walkabouts-toggle">Read more</a></p>
+                            <div id="full-walkabouts" style="display: none;">
+                                <p>I've always needed a way to quietly leave. Not escape—just reset. This piece is about the walkabouts I take when I need to be nobody for a little while. Not a productivity hack. Not a routine. Just a quiet return to myself.</p>
+                                <p>There's a certain rhythm I've had to relearn—one that isn't scheduled, optimized, or announced. It's not something I talk about often, because it doesn't lend itself to a calendar invite or a thread. But it's shaped everything that matters.</p>
+                                <p>I call them walkabouts.</p>
+                                <p>Not the kind with hiking boots or backpacks or photo evidence. Not exercise. Not even "getting steps in." My walkabouts are quieter than that. More selfish. They are when I leave—not for long, but long enough. Out the door. Down a street. Sometimes nowhere. Sometimes somewhere very specific. A bench. A railing. A stoop that catches the light.</p>
+                                <p>And I just walk.</p>
+                                <p>These are not breaks from work. They are breaks from identity. From the version of myself that's required—on calls, in family rooms, in messages, in roles. There are days when I need to stop holding my life up like it's a tray I'm carrying with careful balance, and instead set it down beside me and look at it without needing to perform inside it.</p>
+                                <p>That's what a walkabout gives me: a chance to step outside the story I'm in, without needing to end the story entirely.</p>
+                                <p>I started doing this in moments of emotional crisis. Days when I couldn't hear myself think inside the house. Nights when I was a little too known by the people I loved. I'd say, "I need to go for a quick walk." Sometimes I wouldn't even say it. Just go.</p>
+                                <p>And I noticed something. After ten minutes, I was no longer thinking about what had happened. I wasn't even thinking about who I was supposed to be. I was seeing things again. A light bouncing off a window. The precise cruelty of a dead branch on a perfect tree. The teenager yelling into his headphones. The brief permission to feel like nobody in particular.</p>
+                                <p>That anonymity made space for something else to emerge: a kind of slow inner honesty that doesn't show up in meetings or journal pages. The truth that waits for silence. The part of me that doesn't interrupt. That just… watches.</p>
+                                <p>And it didn't take long for that to become essential.</p>
+                                <p>I don't know how to explain this without sounding like I'm romanticizing loneliness. But walkabouts aren't lonely. They're private. They're intimate in a way that's hard to describe—like slipping into bed alone and knowing your body again. Like returning to a part of yourself that doesn't need translation.</p>
+                                <p>The best ones don't solve anything. They don't end with a conclusion. There's no big insight, no pivot, no profound decision. Just a kind of cellular reset. Like my mind sighs. Like I can come back inside without dragging all my shadows behind me.</p>
+                                <p>We don't talk about that enough, do we? The small, unsponsored rituals that keep people sane. The ones that don't scale. That don't get published or posted or tracked. The sacred habits that don't look impressive but quietly hold your life together.</p>
+                                <p>For me, it's walking.</p>
+                                <p>It's not a routine. It's a returning.</p>
+                                <p>It's the thing that reminds me I exist outside of anyone's expectations, outside of productivity, outside of even who I've told myself I am. A walkabout is not a retreat. It's a re-becoming. And I need it. More than I admit.</p>
+                                <p>So if you ever see me stepping out without warning—don't ask where I'm going. I won't know until I get there. And I won't be gone long.</p>
+                                <p>But when I come back, I'll be a little more myself again.</p>
+                            </div>
+                        </div>
                     </div>
                     
                     <!-- Professional Column -->
                     <div>
                         <h3 style="text-align: center; margin-bottom: 1.5rem; color: #2c2c2c;">Professional</h3>
+                        
                         <div class="project-card">
                             <h4>What the Canada-U.S. Trade War Means for Toronto's Tech Playbook</h4>
                             <p><em>By Michael Keoshkerian</em></p>
                             <p><a href="javascript:void(0);" onclick="toggleTradeEssay();" id="trade-essay-toggle">Read more</a></p>
-                            <div id="full-trade-essay" class="expanded-content" style="display: none;">
+                            <div id="full-trade-essay" style="display: none;">
                                 <p>Let's get something out of the way: trade wars are no longer abstract. They're not chapter headings in economics textbooks or theoretical debates in Ottawa or D.C. They're real, they're messy, and they're directly impacting how we build companies, pick markets, and hedge global risk. And right now, Canada—yes, quiet, friendly, under-the-radar Canada—is in the crosshairs of a full-blown trade rupture with the United States.</p>
                                 <p>In a scenario that feels plucked from satire but is deeply real, a returned President Trump has re-imposed sweeping tariffs on Canadian goods. And Canada? It's not backing down. New Prime Minister Mark Carney has retaliated with tariffs of his own, declared the "friendship is over," and begun a major diversification push. The gloves are off. This isn't NAFTA-era soft power. It's elbows-up economic nationalism.</p>
                                 <p>In my work at Toronto Global, supporting international companies expanding into the Toronto Region—particularly U.S. firms across sectors from tech to advanced manufacturing to life sciences—the question is no longer if this will affect us. It's how we respond—and how we keep delivering certainty in uncertain times.</p>
-                                <h4>How We Got Here: The Pendulum Always Swings</h4>
-                                <p>Canada's trade history with the U.S. is one of both codependency and caution. We've had periods of deep integration—from the 1965 Auto Pact to the 1989 FTA to NAFTA—followed by waves of protectionism. The 1930s brought the Smoot-Hawley disaster. The 2010s saw Trump's steel and aluminum tariffs. And now, in 2025, we're back in the thick of it.</p>
-                                <p>If history teaches anything, it's that Canada thrives when it can predict and access the U.S. market—and adapts quickly when that access is threatened. We saw that after Smoot-Hawley (pivot to Britain), in the 1970s (Pierre Trudeau's "Third Option"), and again after Trump's first term (CETA, CPTPP).</p>
-                                <p>But this time? The stakes feel existential.</p>
-                                
-                                <h4>Trump vs. Carney: It's Personal, and It's Strategic</h4>
-                                <p>In the current scenario, Trump has imposed across-the-board tariffs on Canadian goods, citing national security. Carney has responded not just with countermeasures but with a mission: reduce Canadian dependence on the U.S., diversify supply chains, and turn this crisis into a generation-defining economic pivot.</p>
-                                <p>For the first time in a century, a Canadian PM is talking openly about never again being "economically beholden" to Washington. He's flying to Europe, accelerating trade with Asia, and pushing domestic reforms to strengthen internal trade and innovation.</p>
-                                <p>It's not just a political brawl. It's an inflection point for founders, investors, and economic builders across the country.</p>
-                                
-                                <h4>Toronto: Hedge, Bridge, Bet</h4>
-                                <p>If you're a U.S. company leader watching this unfold, here's why Toronto has always mattered—and still does:</p>
-                                <p><strong>Toronto is a hedge.</strong> You get USMCA access with fewer political headwinds. Canada is adapting quickly by reinforcing its global linkages.</p>
-                                <p><strong>Toronto is a bridge.</strong> To Europe (CETA), the UK (interim trade deal), and the Pacific (CPTPP). Your Toronto presence can serve multiple strategic regions.</p>
-                                <p><strong>Toronto is a bet.</strong> On resilience, predictability, talent, and the rule of law. When other markets play whack-a-mole with policy, Toronto is where long-term builders go.</p>
-                                
-                                <h4>The 3 Scenarios We Need to Prep For</h4>
-                                <p><strong>Scenario 1: Reconciliation and Renewal</strong><br>Tariffs fade, diplomacy wins, and North American supply chains re-integrate. Toronto continues to boom as the low-cost, high-trust entry point to the U.S.</p>
-                                <p><strong>Scenario 2: Decoupling and Diversification</strong><br>Canada succeeds in pivoting east and south. Toronto becomes the anchor for companies looking to access EMEA and APAC while avoiding U.S. volatility.</p>
-                                <p><strong>Scenario 3: Muddle Through</strong><br>Tariffs come and go. USMCA holds, barely. Trade disputes flare but stay contained. Smart companies treat Toronto as a vital node in a more complex, risk-adjusted supply chain.</p>
-                                
-                                <h4>What My Strategy Looks Like at Toronto Global</h4>
-                                <p>For anyone reading this and wondering what I'm doing about it—here's my strategy, and how I'm helping international companies navigate this moment:</p>
-                                <p>Reinforce Toronto's value as the most stable and scalable entry point into the U.S. market—not in spite of volatility, but because of it.</p>
-                                <p>Double down on diversification messaging: CETA, CPTPP, UK deals—Toronto has long been a platform for global growth, not just North America.</p>
-                                <p>Support U.S. executives with sector-savvy, full-stack expansion advisory: From site selection to policy navigation to talent and trade strategy.</p>
-                                <p>Position Toronto Global as a long-term partner: We've always adapted through trade shocks. This is no different. Our job is to make your entry resilient.</p>
-                                <p>If you're a business leader—especially from the U.S.—reading this: you've always had Toronto in your toolkit. Now you just understand how we're sharpening the edge.</p>
-                                
-                                <h4>Final Thought</h4>
-                                <p>Trade wars are messy. But Toronto's opportunity is clear. In a moment where the U.S. is unpredictable and Europe is hungry for partners, Canada's biggest city has never been more strategically important.</p>
-                                <p>If you're building globally, Toronto remains one of the smartest moves you can make. The world just got riskier. We just got more valuable.</p>
                                 <p><strong><a href="canada-us-trade-analysis.pdf" target="_blank">Read the comprehensive analysis (PDF)</a></strong></p>
                             </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h4>Why I'm Thinking About a "Lux North"</h4>
+                            <p><em>Building Canada's strategic deep tech engine</em></p>
+                            <p>Over the past year, I've been obsessed with a question: What would it take to build a Canadian version of Lux Capital? A fund that backs dual-use technologies—those that serve both civilian and national security needs. One that helps founders solve big, messy problems that actually matter.</p>
+                            <p>This isn't just about venture capital. It's about what kind of country we want to be.</p>
+                            <p><a href="lux-north-strategic-deep-tech.pdf" target="_blank">Read the full analysis (PDF)</a></p>
                         </div>
                     </div>
                 </div>
@@ -405,7 +404,6 @@
     </div>
 
     <script>
-        // Smooth scrolling for navigation links
         document.querySelectorAll('.toc-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -420,7 +418,6 @@
             });
         });
 
-        // Highlight active section in table of contents
         function updateActiveSection() {
             const sections = document.querySelectorAll('.section');
             const tocLinks = document.querySelectorAll('.toc-link');
@@ -434,7 +431,6 @@
                 }
             });
             
-            // If no section is in the viewport, highlight the first one that's coming up
             if (!currentActiveSection) {
                 sections.forEach(section => {
                     const rect = section.getBoundingClientRect();
@@ -454,12 +450,9 @@
             });
         }
 
-        // Update active section on scroll
         window.addEventListener('scroll', updateActiveSection);
-        // Initial update
         updateActiveSection();
 
-        // Toggle essay display
         function toggleEssay() {
             const fullEssay = document.getElementById('full-essay');
             const toggleLink = document.getElementById('essay-toggle');
@@ -467,33 +460,25 @@
             if (fullEssay.style.display === 'none') {
                 fullEssay.style.display = 'block';
                 toggleLink.textContent = 'Read less';
-                // Make the expanded content span full width
-                fullEssay.style.position = 'absolute';
-                fullEssay.style.left = '0';
-                fullEssay.style.right = '0';
-                fullEssay.style.background = '#faf7f0';
-                fullEssay.style.padding = '2rem';
-                fullEssay.style.marginTop = '1rem';
-                fullEssay.style.border = '1px solid #e8e4db';
-                fullEssay.style.borderRadius = '8px';
-                fullEssay.style.zIndex = '10';
             } else {
                 fullEssay.style.display = 'none';
                 toggleLink.textContent = 'Read more';
-                // Reset styles
-                fullEssay.style.position = '';
-                fullEssay.style.left = '';
-                fullEssay.style.right = '';
-                fullEssay.style.background = '';
-                fullEssay.style.padding = '';
-                fullEssay.style.marginTop = '';
-                fullEssay.style.border = '';
-                fullEssay.style.borderRadius = '';
-                fullEssay.style.zIndex = '';
             }
         }
 
-        // Toggle trade essay display
+        function toggleWalkabouts() {
+            const fullWalkabouts = document.getElementById('full-walkabouts');
+            const toggleLink = document.getElementById('walkabouts-toggle');
+            
+            if (fullWalkabouts.style.display === 'none') {
+                fullWalkabouts.style.display = 'block';
+                toggleLink.textContent = 'Read less';
+            } else {
+                fullWalkabouts.style.display = 'none';
+                toggleLink.textContent = 'Read more';
+            }
+        }
+
         function toggleTradeEssay() {
             const fullTradeEssay = document.getElementById('full-trade-essay');
             const toggleLink = document.getElementById('trade-essay-toggle');
@@ -501,29 +486,9 @@
             if (fullTradeEssay.style.display === 'none') {
                 fullTradeEssay.style.display = 'block';
                 toggleLink.textContent = 'Read less';
-                // Make the expanded content span full width
-                fullTradeEssay.style.position = 'absolute';
-                fullTradeEssay.style.left = '0';
-                fullTradeEssay.style.right = '0';
-                fullTradeEssay.style.background = '#faf7f0';
-                fullTradeEssay.style.padding = '2rem';
-                fullTradeEssay.style.marginTop = '1rem';
-                fullTradeEssay.style.border = '1px solid #e8e4db';
-                fullTradeEssay.style.borderRadius = '8px';
-                fullTradeEssay.style.zIndex = '10';
             } else {
                 fullTradeEssay.style.display = 'none';
                 toggleLink.textContent = 'Read more';
-                // Reset styles
-                fullTradeEssay.style.position = '';
-                fullTradeEssay.style.left = '';
-                fullTradeEssay.style.right = '';
-                fullTradeEssay.style.background = '';
-                fullTradeEssay.style.padding = '';
-                fullTradeEssay.style.marginTop = '';
-                fullTradeEssay.style.border = '';
-                fullTradeEssay.style.borderRadius = '';
-                fullTradeEssay.style.zIndex = '';
             }
         }
     </script>
