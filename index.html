@@ -511,6 +511,19 @@
                 toggleLink.textContent = 'Read more';
             }
         }
+        function toggleSeeing() {
+            const fullSeeing = document.getElementById('full-seeing');
+            const toggleLink = document.getElementById('seeing-toggle');
+    
+            if (fullSeeing.style.display === 'none') {
+                fullSeeing.style.display = 'block';
+                toggleLink.textContent = 'Read less';
+            } else {
+                fullSeeing.style.display = 'none';
+                toggleLink.textContent = 'Read more';
+            }
+        }
+
     </script>
 </body>
 </html>
