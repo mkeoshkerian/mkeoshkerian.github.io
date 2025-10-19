@@ -686,6 +686,18 @@
                 toggleLink.textContent = 'Read more';
             }
         }
+        function toggleMotorcycle() {
+    const fullMotorcycle = document.getElementById('full-motorcycle');
+    const toggleLink = document.getElementById('motorcycle-toggle');
+    
+    if (fullMotorcycle.style.display === 'none') {
+        fullMotorcycle.style.display = 'block';
+        toggleLink.textContent = 'Read less';
+    } else {
+        fullMotorcycle.style.display = 'none';
+        toggleLink.textContent = 'Read more';
+    }
+}
     </script>
 </body>
 </html>
