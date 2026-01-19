@@ -194,6 +194,13 @@
             color: #0066cc;
         }
 
+        .writing-item-date {
+            font-size: 13px;
+            color: #888;
+            font-weight: 400;
+            margin-left: 8px;
+        }
+
         .writing-item .preview {
             font-size: 14px;
             color: #555;
@@ -424,7 +431,7 @@
                 <h3>Professional</h3>
                 
                 <div class="writing-item">
-                    <div class="writing-item-header">Building a Stronger Dominion: A Mission for Canadian Renewal</div>
+                    <div class="writing-item-header">Building a Stronger Dominion: A Mission for Canadian Renewal <span class="writing-item-date">October 2, 2025</span></div>
                     <p class="preview">Canada produces world-class talent and sits on globally significant resources—yet struggles to convert these inputs into strategic capacity. A focus on two reinforcing pillars, Talent and Energy, could reverse the drift.</p>
                     <a href="javascript:void(0);" class="toggle-link" onclick="toggleEssay('dominion')">Read more</a>
                     <div id="dominion" class="essay-content">
@@ -547,9 +554,55 @@
                 </div>
 
                 <div class="writing-item">
-                    <div class="writing-item-header">Lux North: Building Canada's Strategic Deep Tech Engine</div>
-                    <p class="preview">Canada has no dedicated mechanism for investing in dual-use technology and national security. As allies build these ecosystems and the line between economic competitiveness and defense blurs, that absence is becoming a strategic liability.</p>
-                    <a href="lux-north-strategic-deep-tech.pdf" class="toggle-link" target="_blank">Read more</a>
+                    <div class="writing-item-header">Lux North: Building Canada's Strategic Deep Tech Engine <span class="writing-item-date">September 12, 2025</span></div>
+                    <p class="preview">Lux Capital proved you don't need government money to build a defense-tech powerhouse. Canada has the talent and the strategic need. What we lack is the capital infrastructure and the conviction.</p>
+                    <a href="javascript:void(0);" class="toggle-link" onclick="toggleEssay('luxnorth')">Read more</a>
+                    <div id="luxnorth" class="essay-content">
+                        <h2>The Gap</h2>
+                        <p>I started paying attention to Lux Capital a few years ago. Here was a private U.S. firm writing serious checks into defense tech, autonomous systems, and space startups, explicitly framing it as protecting American economic security. They backed Anduril early, before defense tech was fashionable. Their thesis was simple: the most important companies of the next decade would build physical things that mattered for national security. No government anchor required. Just conviction and private capital.</p>
+                        <p>Now they manage $7 billion. Their portfolio includes some of the most consequential companies in aerospace, defense, and frontier tech.</p>
+                        <p>Then I looked for the Canadian equivalent. There isn't one.</p>
+                        <p>No dedicated defense-tech VC fund of meaningful scale. A venture community that views defense as risky, slow, and vaguely distasteful. Procurement systems so dysfunctional that founders describe them as actively hostile to new entrants.</p>
+                        <p>Meanwhile, our allies are building this infrastructure deliberately. The U.S. has poured $130 billion into emerging tech firms through DoD contracts since 2021. Andreessen Horowitz launched a billion-dollar "American Dynamism" fund for founders building in aerospace, defense, and public safety. Private capital is flowing toward national security because investors finally recognize it's a massive market, not a niche.</p>
+                        <p>Canada has watched this happen. We've been politely interested.</p>
+                        <p>We produce world-class talent in AI, cybersecurity, quantum, and robotics. Exactly the domains that matter for modern defense. We just don't have the capital infrastructure to keep that talent building here.</p>
+
+                        <h2>What Others Have Built</h2>
+                        <p>Lux Capital proved you don't need government money to build a defense-tech powerhouse. You need a thesis, patience, and the willingness to back hard problems. They systematically mine academia and government labs for what they call "technological gems," then fund the founders turning those breakthroughs into companies. Their explicit goal: "reintroduce the Pentagon to Silicon Valley."</p>
+                        <p>They're not alone. Founders Fund, Andreessen Horowitz, and a growing cohort of U.S. firms have recognized that defense and dual-use technology represent one of the largest addressable markets in the world. The private sector figured out what governments have always known: security is where serious money flows.</p>
+                        <p>The UK established a National Security Strategic Investment Fund. Australia launched a $15 billion National Reconstruction Fund with defense carve-outs. NATO stood up a €1 billion Innovation Fund, and twenty-four allies committed capital. Canada didn't.</p>
+                        <p>Israel built an entire economy around dual-use innovation. Elite military units spin out commercial ventures in cyber, drones, and AI. Toronto-based AWZ Ventures saw this model clearly enough to focus on Israeli security startups, explicitly aiming to "strengthen national resilience" through those investments. The model works. Canada just hasn't built its own version.</p>
+                        <p>The pattern across leading nations is clear: private capital is flooding into defense and dual-use tech because the returns are real and the market is growing.</p>
+
+                        <h2>Why We're Behind</h2>
+                        <p>It's not that nothing exists. The BDC launched a $200 million Deep Tech Venture Fund in 2019, then shut it down a few years into its twelve-year mandate. A major blow to hard-tech founders who'd counted on patient capital. Deeptech ventures need long runways. Inconsistency from major institutions kills them.</p>
+                        <p>One9 Venture Partners, founded in 2013 by Glenn Cowan while he was still serving in JTF2, tried to fill the gap. They targeted $50 million. Raised $10 million. Still managed to back winners: Tomahawk Robotics sold for $120 million USD, and Strider Technologies raised a $55 million Series C. In April 2025, Kensington Capital acquired One9 to build a defense tech platform.</p>
+                        <p>Progress. But as Kensington's Rick Nathan put it: "There are not any other VC funds in Canada dedicated exclusively to defence tech... there is stuff here, it's just not focused, and it's not that much."</p>
+                        <p>The cultural problem runs deeper. Canadian investors historically view defense as niche at best, unsavory at worst. Our tech community excels at SaaS and fintech but treats hardware and defense as exotic. Government procurement matters as a demand signal, and ours is designed to minimize controversy rather than cultivate capability. Painfully slow timelines, complex regulations, extreme risk aversion. Startups that try to sell to DND describe the process as soul-crushing.</p>
+                        <p>The result is a chicken-and-egg problem: weak capital supply, weak demand signal, and founders who look south out of necessity. Glenn Cowan called raising a defense-focused fund in Canada "a tough lift." The market constraints are real.</p>
+
+                        <h2>What Lux North Could Be</h2>
+                        <p>Canada needs a dedicated dual-use deeptech fund. Call it Lux North. Model it on what Lux Capital built in the U.S.: private capital, a clear thesis, and the conviction to back companies building technology that serves both commercial markets and national security.</p>
+                        <p>This isn't about waiting for government to write checks. It's about private investors recognizing that the same opportunity Lux Capital seized in the U.S. exists here. The technologies reshaping the world (AI, autonomy, space systems, cyber, biotech) are inherently dual-use. A satellite constellation serves commercial customers and Arctic sovereignty. A cybersecurity tool protects banks and critical infrastructure. An autonomous drone fights wildfires and conducts reconnaissance. The line between civilian and military application barely exists anymore.</p>
+                        <p>The thesis has to be explicitly dual-use: companies that can scale commercially while meeting defense and public-sector needs. Civilian markets provide revenue breadth and reduce dependence on government procurement cycles. Defense and government customers provide validation, early adoption, and access to problems worth solving.</p>
+                        <p>Patient capital is non-negotiable. Deeptech companies take longer to mature than SaaS startups. Lux Capital structures for long horizons and follows companies from seed through growth. A Canadian equivalent needs the same discipline. Investors willing to hold through the valley of death rather than seeking quick exits.</p>
+                        <p>The mandate should target domains where Canada has talent and strategic need: cybersecurity, autonomous systems, space and satellites, AI and data analytics, advanced materials, energy resilience, biotech. These aren't speculative categories. They're where Canadian researchers and engineers already compete globally.</p>
+                        <p>And while Lux North wouldn't depend on government funding, it would benefit from a functional demand signal. Working with DND to create pathways for startups to test and deploy technology would accelerate commercialization. Fast-tracking security clearances, building flexible contracting vehicles for pilots, using programs like IDEaS and NATO DIANA to validate technology. These aren't capital asks. They're process improvements that make the market more attractive for private investment.</p>
+
+                        <h2>The Opportunity</h2>
+                        <p>The latent capacity is there. Canadian startups submitted more applications to NATO's DIANA accelerator than any other country in its first cohort. MDA has built world-class space technology for decades. Emerging players are developing rockets, autonomous systems, and AI tools that compete globally. Canada hosts DIANA's North American office in Halifax.</p>
+                        <p>What's missing is the capital infrastructure to support this at scale. A fund that backs ten to twenty dual-use startups annually. Investors with the patience and expertise to navigate defense markets. A thesis that treats national security technology as a feature, not a bug.</p>
+                        <p>Defense tech isn't a niche anymore. Private capital is flowing into it globally because investors finally see what Lux Capital saw two decades ago: this is where serious companies get built. The U.S. venture market for defense and dual-use technology has exploded. If Canada doesn't provide a platform, our best founders will keep taking their ideas elsewhere. If we do, we position ourselves as contributors to allied innovation, not just consumers of technology developed by others.</p>
+
+                        <h2>The Ask</h2>
+                        <p>This won't happen by accident.</p>
+                        <p>Canadian investors (pension funds, family offices, institutional capital) need to recognize that strategic tech is a real category with real returns. The One9 portfolio proved the thesis works. Kensington's acquisition signals that mainstream capital is starting to pay attention. The question is whether Canadian LPs will back a dedicated fund or keep watching U.S. firms capture the opportunity.</p>
+                        <p>Entrepreneurs and researchers need to connect with investors who understand the space and with defense stakeholders who can validate technology. Many hard problems are waiting for solutions. The talent exists. The ideas exist. What's missing is the bridge.</p>
+                        <p>And yes, government has a role. Not as funder, but as customer. Procurement reform, clear signals that non-traditional players are welcome, and a willingness to actually buy from startups would make private investment more attractive. The prevailing risk aversion has to shift.</p>
+                        <p>Canada's future security and prosperity aren't separate goals. A Lux North that channels private capital into dual-use innovation serves both. The technology is coming regardless: AI, autonomy, space systems, cyber tools. The question is whether Canadian founders build it here or somewhere else.</p>
+                        <p>We have the talent. We have the strategic need. What we lack is the capital infrastructure and the conviction.</p>
+                        <p>That can change.</p>
+                    </div>
                 </div>
 
                 <div class="writing-item">
