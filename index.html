@@ -231,6 +231,36 @@
             margin-bottom: 0;
         }
 
+        .essay-content h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-top: 28px;
+            margin-bottom: 16px;
+            padding-bottom: 0;
+            border-bottom: none;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .essay-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .essay-content h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        .essay-content hr {
+            border: none;
+            border-top: 1px solid #e5e5e5;
+            margin: 28px 0;
+        }
+
         /* Fun stuff */
         .fun-grid {
             display: grid;
@@ -396,7 +426,124 @@
                 <div class="writing-item">
                     <div class="writing-item-header">Building a Stronger Dominion: A Mission for Canadian Renewal</div>
                     <p class="preview">Canada produces world-class talent and sits on globally significant resources—yet struggles to convert these inputs into strategic capacity. A focus on two reinforcing pillars, Talent and Energy, could reverse the drift.</p>
-                    <a href="building-a-stronger-dominion.pdf" class="toggle-link" target="_blank">Read more</a>
+                    <a href="javascript:void(0);" class="toggle-link" onclick="toggleEssay('dominion')">Read more</a>
+                    <div id="dominion" class="essay-content">
+                        <h2>The Canadian Moment</h2>
+                        <p>Something shifted in American venture capital around 2020. A generation of investors who came up funding consumer apps and enterprise software started writing checks for defense contractors, nuclear startups, and semiconductor fabs. They called it "American Dynamism"—a bet that the most important companies of the next decade would build physical things that mattered for national security and industrial capacity.</p>
+                        <p>The thesis wasn't subtle: great power competition is back, supply chains are strategic, and the country that makes things will have leverage over the country that merely consumes them.</p>
+                        <p>Canada watched this happen. We've been politely interested.</p>
+                        <p>That's no longer sufficient. Rising geopolitical tensions, fracturing supply chains, and the global race for technological sovereignty demand a distinctly Canadian response. Not a copy of American ideas—we lack the defense budget and venture ecosystem to simply replicate what Andreessen Horowitz is doing. But a response that captures Canadian strengths while confronting Canadian weaknesses.</p>
+                        <p>That response rests on two pillars: <strong>Talent</strong> (mobilizing our people) and <strong>Energy</strong> (leveraging our power).</p>
+                        <p>These aren't abstract categories. They're the two areas where Canada has genuine global advantage—and where we've been most complacent about squandering it. We produce elite engineers, then wave goodbye as they board flights to San Francisco. We sit on critical minerals the world desperately needs, then ship raw ore for others to refine into value.</p>
+                        <p>A serious national strategy would treat these as reinforcing assets. Ambitious energy projects attract ambitious people. Talented people drive innovation in energy and resources. The loop compounds—or, in our case, it could, if we chose to make it.</p>
+                        <p>This is pragmatic yet aspirational. Call it a vision for national resilience. Call it building a stronger dominion.</p>
+
+                        <hr>
+
+                        <h2>Pillar 1: Talent—Mobilizing Our People</h2>
+
+                        <h3>The Brain Drain Problem</h3>
+                        <p>Canadian universities punch far above their weight. Waterloo's computer science program rivals MIT and Stanford. The University of Toronto helped pioneer modern deep learning. Our engineering schools feed talent into the world's most demanding technical organizations.</p>
+                        <p>Then those graduates leave.</p>
+                        <p>The pattern is so familiar it barely registers as a problem anymore. A bright engineer finishes her degree at McGill, accepts an offer from Google or Meta, relocates to the Bay Area, and never comes back. She might retain a vague fondness for Canada—somewhere to visit family at Christmas—but her productive years, her taxes, her startup ideas, and eventually her own hiring decisions all happen somewhere else.</p>
+                        <p>The numbers are stark. Software engineers in San Francisco earn 1.5–2x their Canadian counterparts, even adjusting for cost of living. The most interesting work—the frontier AI labs, the ambitious hardware companies, the defense tech startups tackling hard problems—clusters in the U.S. Canada becomes a farm system, developing talent for others to deploy.</p>
+                        <p>This isn't inevitable. It's a policy choice we've made through inaction.</p>
+
+                        <h3>The Defense Tech Opportunity</h3>
+                        <p>A thriving defense technology sector would change the calculus. Not because patriotism alone keeps people home—it doesn't—but because ambitious engineers want to work on hard problems that matter. Missile guidance systems. Autonomous drones. Satellite constellations. Cyber defense at nation-state scale. These are genuinely interesting technical challenges, and they're currently being solved almost entirely in the United States.</p>
+                        <p>Canada has more latent capacity here than most people realize. Our startups submitted more applications to NATO's DIANA innovation accelerator than any other country in its first cohort. Companies like MDA have built world-class space technology for decades. Reaction Dynamics in Montreal is developing rockets. The talent and ambition exist.</p>
+                        <p>What's missing is the ecosystem to support them.</p>
+                        <p>American defense tech founders have access to specialized accelerators like AFWERX and In-Q-Tel, a CIA-backed venture fund that has seeded dozens of successful companies. They have a Department of Defense willing to act as early customer, providing revenue while products mature. They have venture capitalists who understand the sector's longer timelines and are willing to underwrite them.</p>
+                        <p>Canadian founders get none of this. Our venture capital community—historically cautious, oriented toward capital-efficient SaaS and fintech—views defense and hardware startups as too risky, too slow, too weird. Government procurement systems are designed to minimize risk and controversy, not cultivate domestic capability. The result is a structural disadvantage that talent and ambition alone can't overcome.</p>
+                        <p>Fixing this requires deliberate intervention: a Canadian defense technology accelerator with real funding and mentorship, procurement pathways that let startups sell to DND without drowning in bureaucracy, and venture capital willing to take defense seriously. When our best founders see genuine support for building in Canada first, they will.</p>
+
+                        <h3>Building Dual-Fluency Professionals</h3>
+                        <p>Defense technology doesn't just need engineers. It needs bridge-builders—people fluent in both technology and the language of defense, government, and national security.</p>
+                        <p>These hybrid professionals are rare and valuable. A reservist with a computer science background who understands both military doctrine and machine learning architectures. An aerospace engineer who has spent time consulting with the Air Force and grasps how procurement actually works. A policy expert who can translate between uniformed personnel and startup founders.</p>
+                        <p>This connective tissue barely exists in Canada. We've siloed our technical community from our defense community so thoroughly that they often can't communicate effectively, let alone collaborate.</p>
+                        <p>Building this capacity means creating pathways: education programs that combine engineering with security studies, exchange mechanisms between DND and the tech sector, and cultural shifts that encourage respect between uniformed and civilian innovators. It means treating "dual fluency" as a skill set worth cultivating, not an accident that occasionally happens.</p>
+
+                        <h3>Evolving Ontario's Manufacturing Base</h3>
+                        <p>Southern Ontario's manufacturing heritage is both asset and vulnerability. For decades, the region's identity centered on automotive—the assembly plants, the parts suppliers, the engineering firms clustered around Detroit's orbit. That model is fragmenting as vehicles electrify and supply chains reorganize.</p>
+                        <p>But the underlying capability remains. Ontario has skilled machinists, precision manufacturing know-how, and industrial infrastructure that most regions would envy. The question is what we point it toward.</p>
+                        <p>Some of the transition is already happening. Volkswagen's $20 billion EV battery gigafactory in St. Thomas will create thousands of jobs and position Ontario as a key node in the electric vehicle supply chain. That's a meaningful win. But it's also, in some sense, familiar—a new version of the old model where Ontario makes components for vehicles designed and sold elsewhere.</p>
+                        <p>The more ambitious play is defense manufacturing. Ontario's factories could produce next-generation military equipment: electric armored vehicles, satellite components, advanced materials, autonomous systems. The mechanical engineer in Windsor should be able to imagine designing the next military EV platform, not just the next sedan. That requires deliberate effort to connect the defense tech startup ecosystem with the manufacturing base that could actually build what they design.</p>
+
+                        <h3>Finding Canada's Champion</h3>
+                        <p>Ecosystems often need a catalyst—a visible success that proves what's possible and inspires imitators.</p>
+                        <p>American defense tech had Palmer Luckey, whose company Anduril demonstrated that a startup could build serious military hardware and win major contracts. Whatever one thinks of Luckey personally, Anduril's success unlocked a generation of founders who saw a template and followed it. Success breeds success.</p>
+                        <p>Canada needs an equivalent story. Not necessarily a single individual to lionize, but proof of concept that cutting-edge defense technology can be built on Canadian soil, by Canadian founders, serving Canadian and allied interests. When that story exists, dozens of founders currently on the fence will make different decisions.</p>
+                        <p>This is partly about funding—Canada lacks dedicated defense venture funds or an In-Q-Tel equivalent. But it's also about narrative. Few Canadians know about the genuinely impressive work happening at companies like MDA or emerging players like Reaction Dynamics. We're bad at celebrating our own innovators, and that cultural modesty has costs.</p>
+
+                        <hr>
+
+                        <h2>Pillar 2: Energy—Leveraging Our Power</h2>
+
+                        <h3>Energy as Strategy</h3>
+                        <p>Energy is the foundation everything else rests on. Economic vitality, military readiness, industrial capacity, and quality of life all depend on reliable, affordable power. For a resource-rich country like Canada, energy represents both strategic advantage and strategic responsibility.</p>
+                        <p>The global context has shifted. For decades, energy policy was primarily an economic and environmental question—how to balance development, cost, and emissions. Geopolitics intruded occasionally but could mostly be managed through markets.</p>
+                        <p>That era is ending. Russia's invasion of Ukraine exposed Europe's vulnerability to energy dependence with devastating clarity. Supply chain disruptions during COVID revealed how concentrated critical manufacturing had become. The U.S.-China technology competition has made semiconductors, rare earths, and battery materials into strategic assets subject to export controls and industrial policy.</p>
+                        <p>Energy security is now national security, and Canada is better positioned than almost any country on earth to thrive in this environment.</p>
+
+                        <h3>The Critical Minerals Advantage</h3>
+                        <p>Critical minerals are the new oil—essential inputs for the technologies that will define the coming decades.</p>
+                        <p>Electric vehicles need lithium, cobalt, nickel, and graphite. Semiconductors need gallium and germanium. Clean energy systems need rare earth elements for magnets and specialized alloys. Defense technologies depend on all of the above.</p>
+                        <p>The problem is that China dominates processing and refining for most of these materials. Even when minerals are mined elsewhere, they typically flow through Chinese facilities before reaching manufacturers. This concentration creates strategic vulnerability that Western governments are only beginning to address.</p>
+                        <p>Canada's position is extraordinary. We are the only Western Hemisphere nation possessing all the minerals required for EV batteries. We rank among the top U.S. suppliers for many critical materials. Recent analyses suggest Canada could build the world's leading battery supply chain, potentially overtaking China.</p>
+                        <p>But potential isn't performance. Capturing this opportunity requires action across the value chain: fast-tracking responsible mining projects instead of letting them languish in permitting purgatory, building domestic refining capacity so we process our own materials, and incentivizing downstream manufacturing so the value-add happens here rather than abroad.</p>
+                        <p>The security imperative is clear. These minerals are vital for defense technologies, from fighter jets to guided missiles to secure communications. A supply chain controlled by strategic competitors is a supply chain that can be weaponized against us. By developing our own capacity, Canada can supply itself and allies while reducing dangerous dependencies.</p>
+
+                        <h3>The Nuclear Edge</h3>
+                        <p>Ontario has quietly built one of the most impressive nuclear energy systems in the world. Approximately 60% of the province's electricity comes from nuclear plants—clean, reliable baseload power that has operated safely for decades.</p>
+                        <p>Now Ontario is leading on the next generation of nuclear technology: Small Modular Reactors (SMRs).</p>
+                        <p>The Darlington SMR project will be the first grid-scale SMR in the G7, connecting 300 MW of capacity by 2030. Eventually, four reactors will provide 1,200 MW of carbon-free electricity. The project will create 18,000 construction jobs and add an estimated $35 billion to Ontario's GDP over its lifecycle.</p>
+                        <p>But the strategic significance extends beyond a single power plant. SMRs hit multiple objectives simultaneously: decarbonizing our grid without sacrificing reliability, ensuring energy independence using Canadian uranium, creating a high-skilled industrial workforce in nuclear engineering, and opening export opportunities as other countries seek similar technology.</p>
+                        <p>Success at Darlington positions Canadian firms to export SMR technology worldwide. Countries across Europe, Asia, and the developing world need clean baseload power and lack the expertise to build it themselves. Canada could become a global supplier—not just of reactors, but of the engineering services, fuel supply, and operational know-how that accompany them.</p>
+                        <p>This is industrial policy at its most strategic: build capability at home, prove it works, then sell it to the world.</p>
+
+                        <h3>A Holistic Energy Strategy</h3>
+                        <p>Energy security encompasses Canada's entire resource base, and a serious strategy treats it holistically.</p>
+                        <p>While transitioning toward cleaner energy, our petroleum sector remains economically significant and can fund innovation in carbon capture, hydrogen production, and emissions reduction technologies. Writing off oil and gas entirely would mean abandoning revenue, expertise, and infrastructure that could be redirected toward strategic goals.</p>
+                        <p>Our vast hydroelectric capacity—especially in Quebec and British Columbia—provides some of the cleanest electricity on earth. This is already attracting energy-intensive industries seeking to reduce their carbon footprint. Data centers, aluminum smelters, and battery manufacturers all want access to abundant clean power.</p>
+                        <p>The key is treating energy as a strategic asset rather than just an economic commodity or environmental problem. A country with plentiful, affordable, clean energy can power industries others can't, attract investment others won't, and maintain sovereignty others lack.</p>
+                        <p>This means hardening infrastructure against physical and cyber threats. It means maintaining strategic reserves. It means developing exportable expertise in areas like battery recycling and portable military power systems. It means regulatory processes that provide certainty and move at the speed investment requires.</p>
+                        <p>Energy abundance is a competitive advantage Canada already possesses. The question is whether we leverage it deliberately or let it dissipate through neglect.</p>
+
+                        <hr>
+
+                        <h2>From Vision to Action</h2>
+
+                        <h3>The Reinforcing Loop</h3>
+                        <p>Talent and Energy aren't separate strategies. They're two halves of a single flywheel.</p>
+                        <p>Cutting-edge energy projects attract talented people. Engineers want to work on first-of-kind SMRs, next-generation battery technology, and critical mineral processing facilities. The problems are hard, the stakes are real, and the work matters. When those opportunities exist in Canada, fewer people leave.</p>
+                        <p>Talented people, in turn, drive innovation in energy and resources. They start companies, improve processes, develop new technologies, and train the next generation. Human capital compounds.</p>
+                        <p>The same logic applies to defense tech. A thriving defense sector attracts engineers and entrepreneurs who want to work on hard problems with national significance. Their presence strengthens the ecosystem, attracts capital, and creates success stories that inspire imitators.</p>
+                        <p>Right now, these loops are running in reverse. Talent leaves because opportunities are elsewhere. Opportunities are elsewhere because talent left. Breaking this cycle requires deliberate intervention—creating the initial conditions that let the flywheel start turning in the right direction.</p>
+
+                        <h3>What This Looks Like</h3>
+                        <p>Several initiatives could catalyze the shift:</p>
+                        <p>A coordinated effort to recruit Canadian expatriates back home. Thousands of talented Canadians work in Silicon Valley, often in exactly the technical domains—AI, hardware, defense—where Canada needs capacity. Many have family ties, cultural affinity, and latent interest in returning if the right opportunity arose. A deliberate program identifying these individuals and matching them with competitive roles, research positions, and startup funding could reverse meaningful portions of the brain drain.</p>
+                        <p>A Canadian Defense Technology Accelerator providing funding, mentorship from military and industry veterans, and fast-track access to DND. Coupled with a government venture fund or In-Q-Tel equivalent, this could seed dozens of companies over five to ten years. The model exists elsewhere. Canada simply hasn't built it.</p>
+                        <p>A cultural narrative shift. Somewhere along the way, Canada became embarrassed about building physical things—factories, power plants, military equipment—as if these were retrograde activities for less enlightened nations. The opposite is true. Advanced manufacturing, energy infrastructure, and defense technology are markers of sophisticated, capable societies. Countries that make things have leverage. Countries that don't are subject to the decisions of those who do.</p>
+                        <p>Policy alignment across the federal government. Procurement reform enabling SMEs to sell to government efficiently. Industrial and Technological Benefits from defense purchases directed toward Canadian startups, not just established primes. Regulatory certainty for mining and nuclear projects, with clear approval timelines that let investment flow.</p>
+                        <p>None of this requires unprecedented budgets or radical policy departures. It requires focus, coordination, and the political will to prioritize Canadian strategic capacity.</p>
+
+                        <h3>Starting Local, Scaling National</h3>
+                        <p>Toronto and Southern Ontario represent the natural starting point. The region is Canada's business and technology capital, with a critical mass of talent, capital, and institutions. It also has a manufacturing base actively seeking new direction as automotive transforms.</p>
+                        <p>Success here—the first grid-scale SMR at Darlington, battery plants in St. Thomas, a defense tech startup ecosystem taking root—creates templates for nationwide replication. Other provinces have different advantages: Quebec's hydropower, Alberta's energy expertise, British Columbia's Pacific trade links. A model that works in Ontario can adapt to these contexts.</p>
+                        <p>But starting somewhere matters more than starting everywhere. Focus creates momentum. Momentum attracts resources. Resources enable scale.</p>
+
+                        <hr>
+
+                        <h2>The Mission</h2>
+                        <p>This isn't a policy white paper. It's a statement of conviction about what Canada could become.</p>
+                        <p>We have the ingredients for genuine strategic capacity: world-class talent, abundant resources, democratic stability, and alliance relationships that matter. We've simply failed to convert these inputs into outputs. That's a choice, and choices can change.</p>
+                        <p>The goal is becoming a connector and champion—linking talent to opportunities, capital to projects, and advancing a simple narrative: Canada can and must build important things. Defense technology. Energy infrastructure. Advanced manufacturing. The hard, physical, consequential work that secures prosperity and sovereignty.</p>
+                        <p>The next generation of Canadians should be able to work on breakthrough technologies without leaving the country. They should see a domestic ecosystem that supports ambition instead of funneling it elsewhere. They should inherit a Canada that builds, not just a Canada that consumes what others have built.</p>
+                        <p>We face real challenges. Arctic security requires capabilities we don't currently possess. Grid stability will determine whether electrification succeeds or stalls. AI development is concentrating in a handful of American and Chinese labs, with Canada watching from the periphery.</p>
+                        <p>But with focused investment in Talent and Energy—the two areas where our advantages are clearest—Canada can punch above its weight. Not through wishful thinking or national vanity, but through deliberate effort to convert latent potential into strategic reality.</p>
+                        <p>This is the Canadian moment. What we do with it is up to us.</p>
+                    </div>
                 </div>
 
                 <div class="writing-item">
