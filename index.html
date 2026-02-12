@@ -377,15 +377,15 @@
             
             <div class="stats">
                 <div class="stat">
-                    <div class="stat-number">100+</div>
+                    <div class="stat-number" data-final="100+" data-prefix="" data-suffix="+" data-max="999">100+</div>
                     <div class="stat-label">Companies guided</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">$800M+</div>
+                    <div class="stat-number" data-final="$800M+" data-prefix="$" data-suffix="M+" data-max="999">$800M+</div>
                     <div class="stat-label">Investment attracted</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">3,000+</div>
+                    <div class="stat-number" data-final="3,000+" data-prefix="" data-suffix="+" data-max="9999" data-comma="true">3,000+</div>
                     <div class="stat-label">Jobs created</div>
                 </div>
             </div>
@@ -851,6 +851,73 @@
                 link.textContent = 'Read more';
             }
         }
+    </script>
+    <script>
+        (function() {
+            var statEls = document.querySelectorAll('.stat-number[data-final]');
+            var hasRun = false;
+
+            function formatWithComma(n) {
+                return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            }
+
+            function spinNumber(el, delay) {
+                var finalText = el.getAttribute('data-final');
+                var prefix = el.getAttribute('data-prefix');
+                var suffix = el.getAttribute('data-suffix');
+                var max = parseInt(el.getAttribute('data-max'));
+                var useComma = el.getAttribute('data-comma') === 'true';
+                var duration = 1400 + delay;
+                var interval = 50;
+                var startTime = null;
+
+                setTimeout(function() {
+                    startTime = Date.now();
+                    var spin = setInterval(function() {
+                        var elapsed = Date.now() - startTime;
+                        if (elapsed >= duration) {
+                            clearInterval(spin);
+                            el.textContent = finalText;
+                            return;
+                        }
+                        var rand = Math.floor(Math.random() * max);
+                        var display = useComma ? formatWithComma(rand) : rand.toString();
+                        el.textContent = prefix + display + suffix;
+
+                        // slow down as we approach the end
+                        if (elapsed > duration * 0.7) {
+                            clearInterval(spin);
+                            spin = setInterval(arguments.callee, interval + 80);
+                        }
+                    }, interval);
+                }, delay);
+            }
+
+            function startAnimation() {
+                if (hasRun) return;
+                hasRun = true;
+                statEls.forEach(function(el, i) {
+                    spinNumber(el, i * 200);
+                });
+            }
+
+            // Use IntersectionObserver to trigger when stats scroll into view
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            startAnimation();
+                            observer.disconnect();
+                        }
+                    });
+                }, { threshold: 0.5 });
+                var statsSection = document.querySelector('.stats');
+                if (statsSection) observer.observe(statsSection);
+            } else {
+                // Fallback: run on load
+                startAnimation();
+            }
+        })();
     </script>
 </body>
 </html>
